@@ -11,7 +11,14 @@ import SwiftUI
 struct ecommerce_admin_macos_swiftuiApp: App {
     var body: some Scene {
         WindowGroup {
-           UserView()
-        }
+          HomeStack()
+        }.windowStyle(HiddenTitleBarWindowStyle())
+    }
+}
+
+extension NSTextField{
+    open override var focusRingType: NSFocusRingType {
+        get {.none}
+        set {}
     }
 }
