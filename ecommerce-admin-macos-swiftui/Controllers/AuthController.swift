@@ -20,20 +20,27 @@ class authController {
         var json = [String:Any]()
         json["username"] = payload.username
         json["password"] = payload.password
-    
         
+        let username = payload.username
+        let password = payload.password
+        
+        let loginString = NSString(format: "%@:%@", username, password)
+        let loginData: NSData = loginString.data(using: String.Encoding.utf8.rawValue)! as NSData
+        let base64LoginString = loginData.base64EncodedString(options: [])
+
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData)
 
         request.httpMethod = "POST"
         request.httpBody = try! JSONSerialization.data(withJSONObject: json , options: [])
-        request.addValue("Basic c2FuZW5naW5lZXI6MTIz", forHTTPHeaderField: "Authorization")
+        request.addValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
        
-        
-        print("URL: \n \(url) \n")
-        print("REQUEST: \n \(request) \n")
-        print("JSON PAYLOAD: \n \(json) \n")
+        print("\nURL: \n \(url)")
+        print("\nREQUEST: \n \(request)")
+        print("\nJSON PAYLOAD: \n \(json)")
+        print("\nLOGIN_DATA:\n", loginData)
+        print("\nBASE64LOGIN_STRING:\n", base64LoginString)
 
         let task = urlsession.dataTask(with: request) { data, response, error in
                 guard let data = data else {
@@ -42,11 +49,11 @@ class authController {
                   return
                 }
             
-            print("DATA:\n \(data) \n ")
-            print("RESPONSE:\n \(response!) \n")
-            print("ERROR: \n \(error?.localizedDescription ?? "unknown error") \n")
+            print("\nDATA:\n \(data)")
+            print("\nRESPONSE:\n \(response!)")
+            print("\nERROR: \n \(error?.localizedDescription ?? "unknown error")")
             
-            print("\n RESPONSE:", String(data: data, encoding: .utf8)!, "\n")
+            print("\n RESPONSE:", String(data: data, encoding: .utf8)!)
             semaphore.signal()
             
             }
