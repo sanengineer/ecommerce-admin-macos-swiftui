@@ -11,23 +11,13 @@ struct LoginStack: View {
     
     @State private var usernameField: String
     @State private var passwordField: String
-//
-//    init(){
-//        let usernameField = UserDefaults.standard.string(forKey: "username_field") ?? ""
-//        let passwordField = UserDefaults.standard.string(forKey: "password_field") ?? ""
-//
-//        self._usernameField = State(initialValue: usernameField)
-//        self._passwordField = State(initialValue: passwordField)
-//    }
-    
+
     init(){
         let authuser = AuthUser.init(username: UserDefaults.standard.string(forKey: "username_field") ?? "", password: UserDefaults.standard.string(forKey: "password_field") ?? "")
-        
         self._usernameField = State(initialValue: authuser.username)
         self._passwordField = State(initialValue: authuser.password)
     }
 
-    
     var body: some View {
         HStack {
             
@@ -111,6 +101,8 @@ struct LoginStack: View {
 //                            print(self.$passwordField)
                             print(username)
                             print(password)
+                            
+                            authController().authLogin()
                             
                             print(auth.username)
                             print(auth.password)

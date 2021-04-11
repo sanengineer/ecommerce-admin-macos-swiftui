@@ -10,32 +10,57 @@ import Foundation
 class authController {
     
     
-//    func authLogin() {
-//        let url = Environment.userURL.appendingPathComponent("/auth/login")
-//
-//        print(url)
-//
-//        let urlsession = URLSession.shared
-//
-//        var json = [AuthUser]()
-//
-//
-//       do {
-//            var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData)
-//
-//            print(request)
-//
-//            request.httpMethod = "POST"
-//            request.httpBody = try! JSONSerialization.data(withJSONObject: parameters, options: [])
-//            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//                        request.addValue("application/json", forHTTPHeaderField: "Accept")
-//
-//            let task = urlsession.dataTask(with: request)
-//
-//            task.resume()
-//        }
-//       catch {}
-//    }
+    func authLogin(){
+        let semaphore = DispatchSemaphore (value: 0)
+        let url = Environment.userURL.appendingPathComponent("/auth/login")
+
+        print(url)
+
+        let urlsession = URLSession.shared
+
+        let payload = AuthUser.init(username: UserDefaults.standard.string(forKey: "username_field") ?? "", password: UserDefaults.standard.string(forKey: "password_field") ?? "")
+
+        var json = [String:Any]()
+        
+        json["username"] = payload.username
+        json["password"] = payload.password
+
+       do {
+            var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData)
+
+            print(request)
+            print("JSON PAYLOAD: \(json)")
+
+            request.httpMethod = "POST"
+            request.httpBody = try! JSONSerialization.data(withJSONObject: json , options: [])
+            request.addValue("Basic c2FuZW5naW5lZXI6MTIz", forHTTPHeaderField: "Authorization")
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+           
+
+
+        let task = urlsession.dataTask(with: request) { data, response, error in
+            guard let data = data else {
+              print(String(describing: error))
+              semaphore.signal()
+              return
+            }
+            
+            print("DATA:\(data)")
+            print("RESPONSE:\(response!)")
+            print("ERROR:\(error?.localizedDescription ?? "uknown error")")
+            print(String(data: data, encoding: .utf8)!)
+            semaphore.signal()
+            
+        }
+
+            task.resume()
+            semaphore.wait()
+        }
+//       catch {
+//        
+//       }
+    }
     
    
     func setKey() {
