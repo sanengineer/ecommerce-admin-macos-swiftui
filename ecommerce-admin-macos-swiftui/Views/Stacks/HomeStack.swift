@@ -7,23 +7,22 @@
 import Foundation
 import SwiftUI
 
+var screen = NSScreen.main!.visibleFrame
+
 struct HomeStack: View {
+    
+    @EnvironmentObject var customerData: PublishedConstants
+    
     var body: some View {
-        HStack {
-            TopBar()
-            SearchComponent()
-        }.padding(.horizontal, 18.0 )
-        
-        VStack {
-            UserView()
-        }
-        .ignoresSafeArea(.all, edges: .all)
-        
+        VStack{
+            HStack{
+                SidebarNavigation()
+            }
+        } 
     }
 }
 
 struct HomeStack_Previews: PreviewProvider {
-    
     static var previews: some View {
         HomeStack()
     }

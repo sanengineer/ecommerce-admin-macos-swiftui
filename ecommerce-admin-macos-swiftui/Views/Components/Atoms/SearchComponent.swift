@@ -8,8 +8,7 @@ import Foundation
 import SwiftUI
 
 struct SearchComponent: View {
-    
-    @State var image: String = "magnifyingglass"
+
     @State var searchField: String = ""
     @State var searchFieldEditing = false
     
@@ -26,7 +25,7 @@ struct SearchComponent: View {
             .textFieldStyle(PlainTextFieldStyle())
             .background(Color.black.opacity(0.1))
             .font(.system(size: 12, weight: .medium, design: .default))
-            //                .textFieldStyle(SearchFieldEditingStyle(focused:$searchFieldEditing))
+                            .textFieldStyle(SearchFieldEditingStyle(focused:$searchFieldEditing))
     }
         .cornerRadius(8.0)
 }
@@ -47,3 +46,4 @@ struct SearchFieldEditingStyle: TextFieldStyle {
         }
     }
 }
+

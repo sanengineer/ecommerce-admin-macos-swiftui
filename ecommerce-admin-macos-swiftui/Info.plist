@@ -29,5 +29,7 @@
 	<string>$(USER_URL)</string>
 	<key>PRODUCT_URL</key>
 	<string>$(PRODUCT_URL)</string>
+	<key>ORDER_URL</key>
+	<string>$(ORDER_URL)</string>
 </dict>
 </plist>
