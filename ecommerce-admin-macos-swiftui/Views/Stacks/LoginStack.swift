@@ -81,10 +81,18 @@ struct LoginStack: View {
                     .cornerRadius(12)
                     
                     HStack{
+                        Button("logout"){
+                            authController().authLogout()
+                        }
+                        
                         Button("save"){
                             UserDefaults.standard.setValue(self.usernameField, forKey: "username_field")
                             UserDefaults.standard.setValue(self.passwordField, forKey: "password_field")
-                       
+                            
+                            DispatchQueue.main.async {
+                                authController().authLogin()
+                            }
+                            
  
                         }
                         
@@ -102,7 +110,8 @@ struct LoginStack: View {
                             print(username)
                             print(password)
                             
-                            authController().authLogin()
+                            authController().getKey()
+                            
                             
                             print(auth.username)
                             print(auth.password)

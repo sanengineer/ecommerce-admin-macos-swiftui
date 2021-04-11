@@ -18,3 +18,13 @@ struct AuthUser: Codable {
     }
 
 }
+
+struct AuthResponse: Codable {
+    var tokenString: String
+    var userId: String
+    
+    init(tokenString: String, userId: String) {
+        self.tokenString = tokenString
+        self.userId = userId
+    }
+}

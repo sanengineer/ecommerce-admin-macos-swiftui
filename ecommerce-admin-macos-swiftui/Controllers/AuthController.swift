@@ -10,12 +10,13 @@ import Foundation
 class authController {
 
     func authLogin(){
+        
         let semaphore = DispatchSemaphore (value: 0)
         let url = Environment.userURL.appendingPathComponent("/auth/login")
 
         let urlsession = URLSession.shared
 
-        let payload = AuthUser.init(username: UserDefaults.standard.string(forKey: "username_field") ?? "", password: UserDefaults.standard.string(forKey: "password_field") ?? "")
+        let payload = AuthUser.init(username: UserDefaults.standard.string(forKey: "username_field")!, password: UserDefaults.standard.string(forKey: "password_field")!)
 
         var json = [String:Any]()
         json["username"] = payload.username
@@ -49,11 +50,33 @@ class authController {
                   return
                 }
             
+            let json = try! JSONSerialization.jsonObject(with: data, options: [])
+            
+            if let responAuth = json
+                as? [String: Any] {
+                if let responAuthToken = responAuth["tokenString"] as? String {
+                    // Save Token To Local
+                    UserDefaults.standard.setValue(responAuthToken, forKey: "tokenString_local")
+                }
+                
+                if let responAuthUserId = responAuth["userId"] as? String {
+                    // Save UserId To Local
+                    UserDefaults.standard.setValue(responAuthUserId, forKey: "userId_local")
+                }
+            }
+        
+            let responAuthSavedToLocal = AuthResponse.init(tokenString: UserDefaults.standard.string(forKey: "tokenString_local")!, userId: UserDefaults.standard.string(forKey: "userId_local")!)
+    
+            let resHttp = response as! HTTPURLResponse
+          
+            print("\nRESPON AUTH LOCAL: \(responAuthSavedToLocal)")
+            print("\nJSON: \(json)")
             print("\nDATA:\n \(data)")
             print("\nRESPONSE:\n \(response!)")
+            print("\nRES_HTTP", resHttp)
             print("\nERROR: \n \(error?.localizedDescription ?? "unknown error")")
+            print("\n RESPONSE_STRINGJSON:", String(data: data, encoding: .utf8)!)
             
-            print("\n RESPONSE:", String(data: data, encoding: .utf8)!)
             semaphore.signal()
             
             }
@@ -63,6 +86,11 @@ class authController {
     }
     
    
+    func authLogout(){
+        UserDefaults.standard.removeObject(forKey: "username_field")
+        UserDefaults.standard.removeObject(forKey: "password_field")
+    }
+    
     func setKey() {
         
         let defaults = UserDefaults.standard
@@ -88,18 +116,15 @@ class authController {
 //        
 //        print(payload.username)
 //        print(payload.password)
-        
-        let ok = UserDefaults.standard.object(forKey: "userDefaults_username")
-        
         let defaults = UserDefaults.standard
         
-        if let stringOne = defaults.object(forKey: "userDefaults_username") {
-            print(stringOne) // Some String Value
-            print(defaults)
+//        let usernameSavedLocal = defaults.string(forKey: "username_field")
+   
+        if let stringOne = defaults.object(forKey: "username_field") {
+            print("\nSTRING_ON:", stringOne) // Some String Value
         }
         else {
-            print("no value")
-            print(ok ?? "no")
+            print("\nSTRING_ON: no value")
         }
         
     }

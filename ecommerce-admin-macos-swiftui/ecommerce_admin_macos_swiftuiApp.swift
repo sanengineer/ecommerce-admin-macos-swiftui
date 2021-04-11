@@ -6,6 +6,7 @@
 //
 import SwiftUI
 
+
 struct windowSize {
     let minWidth: CGFloat = 400
     let minHeight: CGFloat = 500
@@ -14,6 +15,10 @@ struct windowSize {
 @main
 struct ecommerce_admin_macos_swiftuiApp: App {
     
+    let defaults = UserDefaults.standard
+    
+    
+    
     var auth = false
    
  
@@ -21,16 +26,20 @@ struct ecommerce_admin_macos_swiftuiApp: App {
         WindowGroup{
             
             ZStack {
-                if (auth != false) {
-                    HomeStack()
-                }
-                else {
+                
+                if defaults.object(forKey: "username_field") == nil {
                     LoginStack()
-//                            .onAppear {
-//                                let _ = NSApplication.shared.windows.map { $0.tabbingMode = .disallowed }
-//                            }
                 }
+                if defaults.object(forKey: "username_field") != nil {
+                  HomeStack()
+                    //                            .onAppear {
+                    //                                let _ = NSApplication.shared.windows.map { $0.tabbingMode = .disallowed }
+                    //                            }
+                }
+                
             }
+                    
+             
 
             }
         

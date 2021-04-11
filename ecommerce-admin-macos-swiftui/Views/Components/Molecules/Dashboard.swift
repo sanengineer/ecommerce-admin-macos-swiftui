@@ -11,6 +11,15 @@ struct Dashboard: View {
     var body: some View {
         VStack{
             HStack{
+                
+                Button("logout"){
+                    
+                    DispatchQueue.main.async {
+                        authController().authLogout()
+                    }
+                    
+                    
+                }
                 Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
                 Spacer()
             }
