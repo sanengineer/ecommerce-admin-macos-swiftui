@@ -39,8 +39,13 @@ struct ecommerce_admin_macos_swiftuiApp: App {
 //            }
             
             
-            ZStack {
+            VStack {
+                
+           
+                
                 ContentView().environmentObject(settings)
+                
+               
             }
            
            

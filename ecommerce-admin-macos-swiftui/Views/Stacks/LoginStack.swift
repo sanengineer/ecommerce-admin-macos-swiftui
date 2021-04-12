@@ -12,6 +12,8 @@ struct LoginStack: View {
     @State private var usernameField: String
     @State private var passwordField: String
     @EnvironmentObject var settings: PublishedConstants
+    @State private var buttonTappedLogin: Bool = false
+    @State private var buttonBackColor: Color = .yellow
 
     init(){
         let authuser = AuthUser.init(username: UserDefaults.standard.string(forKey: "username_field") ?? "", password: UserDefaults.standard.string(forKey: "password_field") ?? "")
@@ -28,7 +30,7 @@ struct LoginStack: View {
                 
                 Spacer()
                 
-                VStack(alignment: .center, spacing: 60){
+                VStack(alignment: .center, spacing: 30){
                     HStack(spacing: 20){
                         VStack(spacing:10){
                             Text("San Coffee")
@@ -36,7 +38,7 @@ struct LoginStack: View {
                             Text("Admin Dashboard")
                                 .font(.system(size: 11, weight: .semibold))
                         }
-                    }
+                    }.padding(.bottom, 40)
   
                     
                     HStack {
@@ -44,31 +46,28 @@ struct LoginStack: View {
                             
                             // Contianer Username
                             VStack(alignment: .leading, spacing: 10){
-                                Text("Username").fontWeight(.bold)
-                               
+                                Text("Username")
+                                    .fontWeight(.bold)
+                
                                 HStack{
-                                    TextField("Name", text: $usernameField)
+                                    TextField("username", text: $usernameField)
                                         .textFieldStyle(PlainTextFieldStyle())
                                         .padding(8)
-                               
+                                    }
+                                    .background(Color.primary.opacity(0.2))
+                                    .cornerRadius(8)
                                 }
-                                .colorScheme(.light)
-                                .background(Color.white)
-                                .cornerRadius(8)
-                            }
-   
                             
                             // Contianer Password
                             VStack(alignment: .leading, spacing: 10){
                                 Text("Password").fontWeight(.bold)
                                 
                                 HStack{
-                                    SecureField("Info", text: $passwordField)
+                                    SecureField("password", text: $passwordField)
                                         .textFieldStyle(PlainTextFieldStyle())
                                         .padding(8)
                                 }
-                                .colorScheme(.light)
-                                .background(Color.white)
+                                .background(Color.primary.opacity(0.2))
                                 .cornerRadius(8)
                             }
   
@@ -82,51 +81,26 @@ struct LoginStack: View {
                     .cornerRadius(12)
                     
                     HStack{
-                        Button("logout"){
-                            authController().authLogout()
-                        }
-                        
-                        Button("login"){
+                        Button {
+                            self.settings.isloggedIn = true
                             UserDefaults.standard.setValue(self.usernameField, forKey: "username_field")
                             UserDefaults.standard.setValue(self.passwordField, forKey: "password_field")
-                            self.settings.isloggedIn = true
-                            DispatchQueue.main.async {
-                                authController().authLogin()
-                            }
-                            
- 
+                            authController().authLogin()
+                        } label: {
+                            Text("Login")
+                                .foregroundColor(buttonTappedLogin ? .black : .white)
+                                .padding(.vertical,8)
+                                .padding(.horizontal, 14)
+                                .font(.system(size: 14, weight: .semibold))
+                                .background(buttonTappedLogin ? Color.primary.opacity(0.8) : Color.primary.opacity(0.2))
+                                .onHover { tapper in
+                                    buttonTappedLogin = tapper
+                                }
                         }
-                        
-                        Button("show"){
-                            
-                            let username = UserDefaults.standard.string(forKey: "username_field") ?? "no username"
-                            let password = UserDefaults.standard.string(forKey: "password_field") ?? "no password"
-                            
-                            let authfunc = AuthUser.self
-                            
-                           let auth = authfunc.init(username:  UserDefaults.standard.string(forKey: "usname_field") ?? "", password:  UserDefaults.standard.string(forKey: "pass_field") ?? "")
-                            
-//                            print(self.$usernameField)
-//                            print(self.$passwordField)
-                            print(username)
-                            print(password)
-                            
-                            authController().getKey()
-                            
-                            
-                            print(auth.username)
-                            print(auth.password)
- 
-                        }
-//                        .buttonStyle(T##style: PrimitiveButtonStyle##PrimitiveButtonStyle)
+                        .buttonStyle(PlainButtonStyle())
+                        .cornerRadius(8)
                     }
-                   
-                    .padding(20)
-                    
                 }
-                
-                
-                
                 .padding(.top, 30)
                 .padding(.bottom, 40)
                 .padding(.horizontal, 30)
@@ -136,9 +110,7 @@ struct LoginStack: View {
             
             Spacer()
         }
-        .frame(
-            minWidth: 600, minHeight: 400,
-            alignment: .center)
+        .frame(minWidth: 1200, minHeight: 700,alignment: .center)
     }
 }
 
@@ -148,3 +120,6 @@ struct LoginStack_Previews: PreviewProvider {
         HomeStack()
     }
 }
+
+
+

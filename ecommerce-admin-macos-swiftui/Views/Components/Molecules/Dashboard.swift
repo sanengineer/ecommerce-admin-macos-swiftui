@@ -15,12 +15,12 @@ struct Dashboard: View {
             HStack{
                 
                 Button("logout"){
-                    
                     self.settings.isloggedIn = false
                         authController().authLogout()
-                  
-                    
-        
+                }
+                
+                Button("show"){
+                    authController().getKey()
                 }
                 
                 Text("Hello, World!")
