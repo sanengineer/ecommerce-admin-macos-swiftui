@@ -11,6 +11,7 @@ struct LoginStack: View {
     
     @State private var usernameField: String
     @State private var passwordField: String
+    @EnvironmentObject var settings: PublishedConstants
 
     init(){
         let authuser = AuthUser.init(username: UserDefaults.standard.string(forKey: "username_field") ?? "", password: UserDefaults.standard.string(forKey: "password_field") ?? "")
@@ -85,10 +86,10 @@ struct LoginStack: View {
                             authController().authLogout()
                         }
                         
-                        Button("save"){
+                        Button("login"){
                             UserDefaults.standard.setValue(self.usernameField, forKey: "username_field")
                             UserDefaults.standard.setValue(self.passwordField, forKey: "password_field")
-                            
+                            self.settings.isloggedIn = true
                             DispatchQueue.main.async {
                                 authController().authLogin()
                             }

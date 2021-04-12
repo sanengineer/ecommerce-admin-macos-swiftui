@@ -14,10 +14,9 @@ struct windowSize {
 
 @main
 struct ecommerce_admin_macos_swiftuiApp: App {
-    
+    let settings = PublishedConstants()
     let defaults = UserDefaults.standard
-    
-    
+
     
     var auth = false
    
@@ -25,23 +24,31 @@ struct ecommerce_admin_macos_swiftuiApp: App {
     var body: some Scene {
         WindowGroup{
             
+//            ZStack {
+//
+//                if defaults.object(forKey: "username_field") == nil {
+//                    LoginStack()
+//                }
+//                if defaults.object(forKey: "username_field") != nil {
+//                  HomeStack()
+//                    //                            .onAppear {
+//                    //                                let _ = NSApplication.shared.windows.map { $0.tabbingMode = .disallowed }
+//                    //                            }
+//                }
+//
+//            }
+            
+            
             ZStack {
-                
-                if defaults.object(forKey: "username_field") == nil {
-                    LoginStack()
-                }
-                if defaults.object(forKey: "username_field") != nil {
-                  HomeStack()
-                    //                            .onAppear {
-                    //                                let _ = NSApplication.shared.windows.map { $0.tabbingMode = .disallowed }
-                    //                            }
-                }
-                
+                ContentView().environmentObject(settings)
             }
+           
+           
                     
              
 
             }
+
         
         .windowStyle(HiddenTitleBarWindowStyle())
         .commands{

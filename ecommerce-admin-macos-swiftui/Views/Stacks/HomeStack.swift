@@ -26,5 +26,5 @@ struct HomeStack_Previews: PreviewProvider {
     static var previews: some View {
         HomeStack()
     }
-    
+
 }

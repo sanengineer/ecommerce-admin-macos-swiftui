@@ -8,11 +8,14 @@
 import SwiftUI
 
 class PublishedConstants: ObservableObject {
+    
     @Published var selectedTab = "Dashboard"
     
     @Published var authenticate: Bool = false
-    
-//    @Published var fieldUsername = "sanengineer"
+
+    @Published var isloggedIn: Bool = false
+
     @Published var fieldUsername: String = ""
+    
     @Published var fieldPassword: String = ""
 }

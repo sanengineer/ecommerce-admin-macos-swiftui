@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class authController {
 
@@ -86,7 +87,8 @@ class authController {
     }
     
    
-    func authLogout(){
+    func authLogout() {
+        
         UserDefaults.standard.removeObject(forKey: "username_field")
         UserDefaults.standard.removeObject(forKey: "password_field")
     }
@@ -127,6 +129,7 @@ class authController {
             print("\nSTRING_ON: no value")
         }
         
+        
     }
 }
 
@@ -135,3 +138,6 @@ struct keys {
     static let firstKey = "1Key"
     static let secondKey = "2Key"
 }
+
+
+

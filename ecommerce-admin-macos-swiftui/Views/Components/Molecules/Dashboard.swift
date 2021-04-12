@@ -8,19 +8,22 @@
 import SwiftUI
 
 struct Dashboard: View {
+    
+    @EnvironmentObject var settings: PublishedConstants
     var body: some View {
         VStack{
             HStack{
                 
                 Button("logout"){
                     
-              
+                    self.settings.isloggedIn = false
                         authController().authLogout()
                   
                     
         
                 }
-                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+                
+                Text("Hello, World!")
                 Spacer()
             }
         }

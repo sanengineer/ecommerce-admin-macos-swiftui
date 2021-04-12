@@ -9,6 +9,7 @@ import SwiftUI
 struct SidebarNavigation: View {
     
     @StateObject var customerData = PublishedConstants()
+    
  
     var body: some View {
 
@@ -48,6 +49,7 @@ struct SidebarNavigation: View {
                         }
                         ToolbarItem(placement: .navigation) {
                             Button("New"){
+                               
                                 print("Hello World")
                             }
                         }
