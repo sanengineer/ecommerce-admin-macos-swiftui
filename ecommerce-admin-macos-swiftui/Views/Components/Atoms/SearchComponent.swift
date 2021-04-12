@@ -11,6 +11,7 @@ struct SearchComponent: View {
 
     @State var searchField: String = ""
     @State var searchFieldEditing = false
+    var screen = NSScreen.main!.visibleFrame
     
     var body: some View {
         
@@ -27,6 +28,7 @@ struct SearchComponent: View {
             .font(.system(size: 12, weight: .medium, design: .default))
                             .textFieldStyle(SearchFieldEditingStyle(focused:$searchFieldEditing))
     }
+//        .frame(width: screen.width - 30, alignment: .center)
         .cornerRadius(8.0)
 }
 

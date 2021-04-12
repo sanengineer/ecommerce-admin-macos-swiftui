@@ -12,6 +12,8 @@ struct TopBar: View {
     @State var searchField: String = ""
     @State var searchFieldEditing = false
     
+    var screen = NSScreen.main!.visibleFrame
+    
     var body: some View {
                 HStack {
                     VStack {
@@ -21,7 +23,7 @@ struct TopBar: View {
                         })        
                     }
                     VStack {
-                        SearchComponent()
+                        SearchComponent().frame(width: 600, alignment: .center)
                     }
                     VStack {
                         Button("Test") {
@@ -29,8 +31,7 @@ struct TopBar: View {
                         }
                     }
                 }
-        .frame(width: 600, alignment: .center)
-                
+                .frame(alignment: .center)
     }
 }
 

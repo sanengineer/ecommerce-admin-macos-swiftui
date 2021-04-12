@@ -9,19 +9,51 @@ import SwiftUI
 
 struct Dashboard: View {
     
+    var screen = NSScreen.main!.frame
+    var screen2 = NSScreen.main!.visibleFrame
+    
+    
    
     var body: some View {
-        VStack{
-            HStack{
+    
+            ScrollView {
                 
-                Button("show"){
-                    authController().getKey()
+                HStack {
+                    VStack(spacing: 13){
+                        HStack(spacing: 13) {
+                            NewMemberCard()
+                            AllMemberCard()
+                            EmptyStockCard()
+                            SalesCard()
+                        }
+                        
+                        
+                            SalesReportChart()
+                       
+                        
+                        
+                        HStack(spacing: 13) {
+                            TopSellingProductsCard()
+                            MostLovedProductsCard()
+                        }
+                      
+                        
+                        RecentsOrderTable()
+                    }
                 }
-                
-                Text("Hello, World!")
-                Spacer()
+                .padding(.top, 13)
+                .padding(.bottom, 20)
+                .padding(.horizontal, 20)
+                .frame(width: 684, alignment: .center)
+                .background(Color.yellow)
+               
+                Button("print"){
+                    print(screen)
+                    print(screen2)
+                }
+               
             }
-        }
+  
     }
 }
 

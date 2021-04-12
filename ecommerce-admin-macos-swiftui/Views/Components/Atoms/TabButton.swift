@@ -16,7 +16,7 @@ struct TabButton: View {
 
     var body: some View {
         Button(action: {withAnimation {selectedTab = title }}, label: {
-            HStack(spacing: 10){
+            HStack(alignment: .center, spacing: 10){
                 Image(systemName: image)
                     .font(.system(size: 16, weight: .semibold))
                     .foregroundColor(selectedTab == title ? .white : .gray)

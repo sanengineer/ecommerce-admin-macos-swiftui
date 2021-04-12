@@ -47,22 +47,25 @@ struct SidebarNavigation: View {
                        
                     }
                     .toolbar {
-                        ToolbarItem(placement: .navigation) {
-                            Button(action: {
-                                print("Hello Button")
-                            }, label: {
-                                Text("Button")
-                            })
-                        }
-                        ToolbarItem(placement: .navigation) {
-                            Button("New"){
-                               
-                                print("Hello World")
-                            }
-                        }
-                        ToolbarItem(placement: .navigation) {
-                            TopBar()
-//                                .background(Color.red)
+                        
+                    
+//                        ToolbarItem(placement: .navigation) {
+//                            Button(action: {
+//                                print("Hello Button")
+//                            }, label: {
+//                                Text("Button")
+//                            })
+//                        }
+//                        ToolbarItem(placement: .navigation) {
+//                            Button("New"){
+//
+//                                print("Hello World")
+//                            }
+//                        }
+                        ToolbarItem(placement: .principal) {
+
+                                TopBar()
+
                         }
                     }
                     .padding(.top, 1.0)

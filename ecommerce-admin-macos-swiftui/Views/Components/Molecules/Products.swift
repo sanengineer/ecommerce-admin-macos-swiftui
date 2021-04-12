@@ -27,7 +27,6 @@ struct Products: View {
                     
                 }.onAppear{ productRestApi().getProducts{
                     products in
-                    
                     self.products = products
                 }
                     

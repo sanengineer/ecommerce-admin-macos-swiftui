@@ -10,7 +10,12 @@ import SwiftUI
 struct Settings: View {
     
     var body: some View {
-        VStack {
+        VStack(alignment: .center, spacing: 20) {
+            
+            Button("show"){
+                authController().getKey()
+            }
+            
             Text("Hello Settings")
         }
     }
