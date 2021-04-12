@@ -9,15 +9,10 @@ import SwiftUI
 
 struct Dashboard: View {
     
-    @EnvironmentObject var settings: PublishedConstants
+   
     var body: some View {
         VStack{
             HStack{
-                
-                Button("logout"){
-                    self.settings.isloggedIn = false
-                        authController().authLogout()
-                }
                 
                 Button("show"){
                     authController().getKey()

@@ -23,6 +23,11 @@ struct SidebarNavigation: View {
                         TabButton(image: "bag", title: "Orders", selectedTab: $customerData.selectedTab)
                         
                         Spacer()
+                        
+                        TabButton(image: "person", title: "Profile", selectedTab: $customerData.selectedTab)
+                        
+                        TabButton(image: "gearshape", title: "Settings", selectedTab: $customerData.selectedTab)
+                            .padding(.bottom, 20)
                     }
                     HStack{
                         HStack{
@@ -33,7 +38,9 @@ struct SidebarNavigation: View {
                             case "Products": Products()
                             case "Categories": Categories()
                             case "Orders": Orders()
-                            default : Text("")
+                            case "Settings": Settings()
+                            case "Profile": ProfileView()
+                            default : Text("Default Case")
                                 }
                             }
                         }
