@@ -18,9 +18,7 @@ struct TopBar: View {
                         Button(action: toggleSidebar , label: {
                             Image(systemName: "sidebar.squares.left")
                                 .font(.system(size: 14, weight: .semibold))
-                        })
-//                        .buttonStyle(PlainButtonStyle())
-                        
+                        })        
                     }
                     VStack {
                         SearchComponent()
