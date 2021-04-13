@@ -11,7 +11,7 @@ struct SalesReportChart: View {
     var body: some View {
 //        HStack{
            
-            Text("New Member Card")
+            Text("Sales Report")
             
 //        }
         .frame(minWidth: 658, minHeight: 133, alignment: .trailing)
@@ -22,6 +22,6 @@ struct SalesReportChart: View {
 
 struct SalesReportChart_Previews: PreviewProvider {
     static var previews: some View {
-        SalesReportChart()
+        HomeStack()
     }
 }

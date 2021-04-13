@@ -23,9 +23,7 @@ struct ecommerce_admin_macos_swiftuiApp: App {
                           }
                         }
                     }
-            .frame(width: 1244, height: 700)
                 }
-                    
         .windowStyle(HiddenTitleBarWindowStyle())
         .commands {
             SidebarCommands()

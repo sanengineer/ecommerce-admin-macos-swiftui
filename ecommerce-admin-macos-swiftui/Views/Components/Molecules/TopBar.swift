@@ -11,13 +11,17 @@ struct TopBar: View {
     
     @State var searchField: String = ""
     @State var searchFieldEditing = false
+    @EnvironmentObject var publishedConstant: PublishedConstants
     
     var screen = NSScreen.main!.visibleFrame
     
     var body: some View {
                 HStack {
                     VStack {
-                        Button(action: toggleSidebar , label: {
+                        Button(action: { withAnimation {
+                            toggleSidebar()
+                        }
+                        }, label: {
                             Image(systemName: "sidebar.squares.left")
                                 .font(.system(size: 14, weight: .semibold))
                         })        
@@ -26,9 +30,12 @@ struct TopBar: View {
                         SearchComponent().frame(width: 600, alignment: .center)
                     }
                     VStack {
-                        Button("Test") {
-                            print("Hello Button")
-                        }
+                        Button(action: { withAnimation {
+                            publishedConstant.rightBarExpanded.toggle()
+                        }}, label: {
+                            Image(systemName: "sidebar.squares.right")
+                                .font(.system(size: 14, weight: .semibold))
+                        })
                     }
                 }
                 .frame(alignment: .center)

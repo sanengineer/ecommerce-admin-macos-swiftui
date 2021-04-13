@@ -9,10 +9,15 @@ import SwiftUI
 
 struct RecentsOrderTable: View {
     var body: some View {
-//        HStack{
-            Text("New Member Card")
-//        }
-        .frame(width: 658, height: 800, alignment: .trailing)
+        HStack{
+            VStack{
+               
+                Text("Recents Order")
+                
+                Spacer()
+            }
+        }
+        .frame(width: 654, height: 800, alignment: .trailing)
         .background(Color.red)
         .cornerRadius(10)
     }
@@ -20,6 +25,6 @@ struct RecentsOrderTable: View {
 
 struct RecentsOrderTable_Previews: PreviewProvider {
     static var previews: some View {
-        RecentsOrderTable()
+        HomeStack()
     }
 }

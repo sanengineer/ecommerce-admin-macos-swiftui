@@ -45,7 +45,7 @@ struct Dashboard: View {
                 .padding(.bottom, 20)
                 .padding(.horizontal, 20)
                 .frame(width: 684, alignment: .center)
-                .background(Color.yellow)
+//                .background(Color.yellow)
                
              
             }
@@ -55,6 +55,6 @@ struct Dashboard: View {
 
 struct Dashboard_Previews: PreviewProvider {
     static var previews: some View {
-        Dashboard()
+        HomeStack()
     }
 }

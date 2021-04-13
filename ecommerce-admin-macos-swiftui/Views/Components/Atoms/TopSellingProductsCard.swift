@@ -9,10 +9,10 @@ import SwiftUI
 
 struct TopSellingProductsCard: View {
     var body: some View {
-//        HStack{
-            Text("New Member Card")
+        HStack{
+            Text("Top Selling Product")
             Spacer()
-//        }
+        }
         .frame(width: 351, height: 301, alignment: .trailing)
         .background(Color.red)
         .cornerRadius(10)
@@ -22,6 +22,6 @@ struct TopSellingProductsCard: View {
 
 struct TopSellingProductsCard_Previews: PreviewProvider {
     static var previews: some View {
-        TopSellingProductsCard()
+        HomeStack()
     }
 }

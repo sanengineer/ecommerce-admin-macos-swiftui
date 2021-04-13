@@ -17,9 +17,8 @@ struct HomeStack: View {
 //        VStack{
             HStack{
                 SidebarNavigation()
-                
             }
-//            .frame(width: 1244, height: 700)
+            .frame(width: 1244, height: 700, alignment: .center)
 //        }
     }
 }

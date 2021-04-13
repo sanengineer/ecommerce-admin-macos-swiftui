@@ -11,7 +11,7 @@ struct SalesCard: View {
     
     var body: some View {
 //        HStack{
-            Text("New Member Card")
+            Text("Sales Card")
 //        }
         .frame(width: 154, height: 99, alignment: .trailing)
         .background(Color.red)
@@ -21,6 +21,6 @@ struct SalesCard: View {
 
 struct SalesCard_Previews: PreviewProvider {
     static var previews: some View {
-        SalesCard()
+        HomeStack()
     }
 }

@@ -28,7 +28,7 @@ struct SidebarNavigation: View {
                         
                         TabButton(image: "gearshape", title: "Settings", selectedTab: $customerData.selectedTab)
                             .padding(.bottom, 20)
-                    }.padding(.horizontal, 30)
+                    }.padding(.horizontal, 30) //Sidebar
                     HStack{
                         HStack{
                             ZStack {
@@ -43,25 +43,30 @@ struct SidebarNavigation: View {
                             default : Text("Default Case")
                                 }
                             }
+                            
+                           
                         }
-                       
                     }
                     .toolbar {
-                    
                         ToolbarItem(placement: .principal) {
-
                                 TopBar()
-
                         }
                     }
                     .padding(.top, 1.0)
                 }
+                .background(Color.orange)
+                
+                DetailView()
+                
+                
             }
+        
+       
     }
 }
 
 struct SidebarNavigation_Previews: PreviewProvider {
     static var previews: some View {
-       SidebarNavigation()
+        HomeStack()
     }
 }

@@ -9,9 +9,9 @@ import SwiftUI
 
 struct MostLovedProductsCard: View {
     var body: some View {
-//        HStack{
-            Text("New Member Card")
-//        }
+        HStack{
+            Text("Most Loved Product")
+        }
         .frame(width: 290, height: 301, alignment: .trailing)
         .background(Color.red)
         .cornerRadius(10)
@@ -20,6 +20,6 @@ struct MostLovedProductsCard: View {
 
 struct MostLovedProductsCard_Previews: PreviewProvider {
     static var previews: some View {
-        MostLovedProductsCard()
+        HomeStack()
     }
 }

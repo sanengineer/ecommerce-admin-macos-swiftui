@@ -18,4 +18,6 @@ class PublishedConstants: ObservableObject {
     @Published var fieldUsername: String = ""
     
     @Published var fieldPassword: String = ""
+    
+    @Published var rightBarExpanded = false
 }
