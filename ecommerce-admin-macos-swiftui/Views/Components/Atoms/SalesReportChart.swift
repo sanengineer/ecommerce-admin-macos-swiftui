@@ -9,11 +9,11 @@ import SwiftUI
 
 struct SalesReportChart: View {
     var body: some View {
-        HStack{
-            Spacer()
+//        HStack{
+           
             Text("New Member Card")
             
-        }
+//        }
         .frame(minWidth: 658, minHeight: 133, alignment: .trailing)
         .background(Color.red)
         .cornerRadius(10)

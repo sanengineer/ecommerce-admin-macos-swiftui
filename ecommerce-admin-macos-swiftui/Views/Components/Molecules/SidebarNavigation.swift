@@ -69,6 +69,12 @@ struct SidebarNavigation: View {
                         }
                     }
                     .padding(.top, 1.0)
+                }.onAppear{
+                    
+                    DispatchQueue.main.async {
+                        let _ = NSApplication.shared.windows.map { $0.styleMask = [ .titled,.closable,.miniaturizable, .fullSizeContentView]}
+                    }
+                                                
                 }
             }
     }

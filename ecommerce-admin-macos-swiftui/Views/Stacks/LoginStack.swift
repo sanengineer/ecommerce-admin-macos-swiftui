@@ -110,7 +110,7 @@ struct LoginStack: View {
             
             Spacer()
         }
-        .frame(minWidth: 1200, minHeight: 700,alignment: .center)
+//        .frame(minWidth: 1244, minHeight: 500,alignment: .center)
     }
 }
 

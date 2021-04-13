@@ -9,9 +9,9 @@ import SwiftUI
 
 struct RecentsOrderTable: View {
     var body: some View {
-        HStack{
+//        HStack{
             Text("New Member Card")
-        }
+//        }
         .frame(width: 658, height: 800, alignment: .trailing)
         .background(Color.red)
         .cornerRadius(10)

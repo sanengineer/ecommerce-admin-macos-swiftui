@@ -14,12 +14,13 @@ struct HomeStack: View {
     @EnvironmentObject var customerData: PublishedConstants
     
     var body: some View {
-        VStack{
+//        VStack{
             HStack{
                 SidebarNavigation()
-                .frame(minWidth: 1200, minHeight: 700)
+                
             }
-        } 
+//            .frame(width: 1244, height: 700)
+//        }
     }
 }
 

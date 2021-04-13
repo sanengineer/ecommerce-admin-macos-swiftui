@@ -16,11 +16,16 @@ struct ecommerce_admin_macos_swiftuiApp: App {
             VStack {
                 ContentView().environmentObject(settings)
                     .onAppear {
-                        let _ = NSApplication.shared.windows.map { $0.tabbingMode = .disallowed }
-                        let _ = NSApplication.shared.windows.map { $0.styleMask = [ .titled,.closable,.miniaturizable]}
+                       
+                        DispatchQueue.main.async {
+//                            let _ = NSApplication.shared.windows.map { $0.styleMask = [ .titled,.closable,.miniaturizable]}
+                            let _ = NSApplication.shared.windows.map { $0.tabbingMode = .disallowed }
+                          }
                         }
                     }
+            .frame(width: 1244, height: 700)
                 }
+                    
         .windowStyle(HiddenTitleBarWindowStyle())
         .commands {
             SidebarCommands()

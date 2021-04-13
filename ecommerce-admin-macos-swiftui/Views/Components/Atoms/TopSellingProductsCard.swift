@@ -9,10 +9,10 @@ import SwiftUI
 
 struct TopSellingProductsCard: View {
     var body: some View {
-        HStack{
+//        HStack{
             Text("New Member Card")
             Spacer()
-        }
+//        }
         .frame(width: 351, height: 301, alignment: .trailing)
         .background(Color.red)
         .cornerRadius(10)

@@ -9,9 +9,9 @@ import SwiftUI
 
 struct MostLovedProductsCard: View {
     var body: some View {
-        HStack{
+//        HStack{
             Text("New Member Card")
-        }
+//        }
         .frame(width: 290, height: 301, alignment: .trailing)
         .background(Color.red)
         .cornerRadius(10)

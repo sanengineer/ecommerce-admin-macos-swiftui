@@ -8,22 +8,11 @@
 import SwiftUI
 
 struct Dashboard: View {
-    
-    var screen = NSScreen.main!.frame
-    var screen2 = NSScreen.main!.visibleFrame
-
-    
-    
    
     var body: some View {
     
             ScrollView() {
-                
-              
-                
                 HStack {
-                   
-                    
                     VStack(spacing: 13){
                        
                         HStack(spacing: 13) {
@@ -35,11 +24,10 @@ struct Dashboard: View {
 //                            Spacer()
                         }
                         
-                        
+                        HStack {
                             SalesReportChart()
-                       
-                        
-                        
+                        }
+                            
                         HStack(spacing: 13) {
 //                            Spacer()
                             TopSellingProductsCard()
@@ -47,23 +35,19 @@ struct Dashboard: View {
 //                            Spacer()
                         }
                       
-                        
-                        RecentsOrderTable()
-                        
-                      
+                        HStack {
+                            RecentsOrderTable()
+                        }
+                       
                     }
                 }
                 .padding(.top, 13)
                 .padding(.bottom, 20)
                 .padding(.horizontal, 20)
-//                .frame(width: 684, alignment: .center)
+                .frame(width: 684, alignment: .center)
                 .background(Color.yellow)
                
-                Button("print"){
-                    print(screen)
-                    print(screen2)
-                }
-               
+             
             }
   
     }
