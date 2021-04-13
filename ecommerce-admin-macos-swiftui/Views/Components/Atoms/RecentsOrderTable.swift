@@ -17,7 +17,7 @@ struct RecentsOrderTable: View {
                 Spacer()
             }
         }
-        .frame(width: 654, height: 800, alignment: .trailing)
+        .frame(width: 658, height: 800, alignment: .trailing)
         .background(Color.red)
         .cornerRadius(10)
     }

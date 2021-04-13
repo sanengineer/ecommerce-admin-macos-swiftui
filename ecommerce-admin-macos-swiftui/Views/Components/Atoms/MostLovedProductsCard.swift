@@ -12,7 +12,7 @@ struct MostLovedProductsCard: View {
         HStack{
             Text("Most Loved Product")
         }
-        .frame(width: 290, height: 301, alignment: .trailing)
+        .frame(width: 293, height: 301, alignment: .trailing)
         .background(Color.red)
         .cornerRadius(10)
     }

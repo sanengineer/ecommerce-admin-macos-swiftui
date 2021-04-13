@@ -7,16 +7,14 @@
 
 import SwiftUI
 
-struct DetailView: View {
+struct DetailsView: View {
     
     @EnvironmentObject var publishedConstant: PublishedConstants
     
     var body: some View {
         
-       
-        
         HStack {
-            
+//            Spacer()
 //            VStack{
 //                HStack{}
 //                HStack {
@@ -31,15 +29,15 @@ struct DetailView: View {
 //
                
             }
-            .background(Color.blue)
+//            .background(Color.blue)
             
-        ExpandedView().frame(width: publishedConstant.rightBarExpanded ? nil : 0)
+        ExpandedView().frame(width: publishedConstant.rightBarExpanded ? 0 : nil)
 //        }
         
     }
 }
 
-struct DetailView_Previews: PreviewProvider {
+struct DetailsView_Previews: PreviewProvider {
     static var previews: some View {
         HomeStack()
     }
@@ -49,15 +47,17 @@ struct ExpandedView: View {
     var body: some View {
         
         HStack {
-//            Divider()
-            
+ 
             VStack {
+
                 Text("Hello VStack")
-                
+               
                 Spacer()
             }
+            
+           
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-            .background(Color.gray)
+            .background(Color.primary.opacity(0.1))
         }
     }
 }

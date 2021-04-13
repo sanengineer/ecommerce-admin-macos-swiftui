@@ -29,7 +29,7 @@ struct UserView: View {
 
 struct UserView_Previews: PreviewProvider {
     static var previews: some View {
-        UserView()
+        HomeStack()
     }
     
 }

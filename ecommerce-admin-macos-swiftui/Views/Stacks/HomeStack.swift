@@ -11,13 +11,13 @@ var screen = NSScreen.main!.visibleFrame
 
 struct HomeStack: View {
     
-    @EnvironmentObject var customerData: PublishedConstants
+  var customerData = PublishedConstants ()
     
     var body: some View {
 //        VStack{
             HStack{
                 SidebarNavigation()
-            }
+            }.environmentObject(customerData)
             .frame(width: 1244, height: 700, alignment: .center)
 //        }
     }

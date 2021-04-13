@@ -54,9 +54,9 @@ struct SidebarNavigation: View {
                     }
                     .padding(.top, 1.0)
                 }
-                .background(Color.orange)
+//                .background(Color.orange)
                 
-                DetailView()
+                DetailsView()
                 
                 
             }

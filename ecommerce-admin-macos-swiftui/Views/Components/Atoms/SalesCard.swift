@@ -13,7 +13,7 @@ struct SalesCard: View {
 //        HStack{
             Text("Sales Card")
 //        }
-        .frame(width: 154, height: 99, alignment: .trailing)
+        .frame(width: 156, height: 99, alignment: .trailing)
         .background(Color.red)
         .cornerRadius(10)
     }

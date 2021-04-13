@@ -38,6 +38,6 @@ struct Products: View {
 
 struct Products_Previews: PreviewProvider {
     static var previews: some View {
-        Products()
+        HomeStack()
     }
 }
