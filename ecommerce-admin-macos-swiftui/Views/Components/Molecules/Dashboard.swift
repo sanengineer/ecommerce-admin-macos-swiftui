@@ -11,20 +11,28 @@ struct Dashboard: View {
     
     var screen = NSScreen.main!.frame
     var screen2 = NSScreen.main!.visibleFrame
+
     
     
    
     var body: some View {
     
-            ScrollView {
+            ScrollView() {
+                
+              
                 
                 HStack {
+                   
+                    
                     VStack(spacing: 13){
+                       
                         HStack(spacing: 13) {
+//                            Spacer()
                             NewMemberCard()
                             AllMemberCard()
                             EmptyStockCard()
                             SalesCard()
+//                            Spacer()
                         }
                         
                         
@@ -33,18 +41,22 @@ struct Dashboard: View {
                         
                         
                         HStack(spacing: 13) {
+//                            Spacer()
                             TopSellingProductsCard()
                             MostLovedProductsCard()
+//                            Spacer()
                         }
                       
                         
                         RecentsOrderTable()
+                        
+                      
                     }
                 }
                 .padding(.top, 13)
                 .padding(.bottom, 20)
                 .padding(.horizontal, 20)
-                .frame(width: 684, alignment: .center)
+//                .frame(width: 684, alignment: .center)
                 .background(Color.yellow)
                
                 Button("print"){

@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct SalesCard: View {
+    
+    var screen = NSScreen.main!.visibleFrame
+
+    
     var body: some View {
         HStack{
             Text("New Member Card")
         }
-        .frame(width: 154, height: 99, alignment: .trailing)
+        .frame(width: screen.width / 8.0, height: screen.width / 9, alignment: .trailing)
         .background(Color.red)
         .cornerRadius(10)
     }

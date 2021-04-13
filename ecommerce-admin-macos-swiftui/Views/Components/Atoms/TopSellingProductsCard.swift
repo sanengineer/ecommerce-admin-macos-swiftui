@@ -11,6 +11,7 @@ struct TopSellingProductsCard: View {
     var body: some View {
         HStack{
             Text("New Member Card")
+            Spacer()
         }
         .frame(width: 351, height: 301, alignment: .trailing)
         .background(Color.red)
