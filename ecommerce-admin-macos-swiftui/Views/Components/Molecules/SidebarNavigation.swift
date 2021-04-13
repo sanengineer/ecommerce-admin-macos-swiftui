@@ -9,6 +9,7 @@ import SwiftUI
 struct SidebarNavigation: View {
     
     @StateObject var customerData = PublishedConstants()
+  
 
     var body: some View {
 

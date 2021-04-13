@@ -21,6 +21,6 @@ class PublishedConstants: ObservableObject {
     
     @Published var rightBarExpanded = false
     
-//    @SwiftUI.Environment(\.presentationMode) var presentationMode
+    @Published var isPresented: Bool = false
     
 }

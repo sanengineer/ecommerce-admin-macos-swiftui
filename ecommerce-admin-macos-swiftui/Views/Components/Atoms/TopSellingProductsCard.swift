@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct TopSellingProductsCard: View {
+    
+    @State var products = [Product]()
+    
     var body: some View {
         HStack {
             VStack{
@@ -32,12 +35,37 @@ struct TopSellingProductsCard: View {
                 }
                 Spacer()
                 HStack{
-                    Text("Table")
-                }
+                   
+                    
+                    List(products, id: \.id) { product in
+                        
+                        HStack(spacing: 13){
+                            
+                            Image(systemName: "person")
+    //                        Text(String(product.id.self))
+                            Text(product.name)
+                           
+                        Spacer()
+//                            Text(product.descriptions)
+                            Text(String(product.price))
+                            
+                        }
+                        
+                    }
+                    
+                    .onAppear{ productRestApi().getProducts{
+                        products in
+                        self.products = products
+                    }
+                        
+                    }
+                    
+                    
+                }.background(Color.secondary.opacity(0.0))
                
               
             }
-            .padding(11)
+            .padding(13)
             .frame(width: 351, height: 301, alignment: .trailing)
             .background(Color.black.opacity(0.1))
             .cornerRadius(10)

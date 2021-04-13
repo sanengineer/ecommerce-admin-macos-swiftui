@@ -9,22 +9,26 @@ import Foundation
 
 struct ModalView: View {
     
-//    @SwiftUI.Environment(\.presentationMode) var presentationMode
-    
-//    @EnvironmentObject var publishedContant: PublishedConstants
-   
+    @SwiftUI.Environment(\.presentationMode) var presentationMode
+
     var body: some View {
-       
-//        Button(action: { withAnimation {
-//            publishedContant.presentationMode.wrappedValue.dismiss()
-//        }
-//
-//        }, label: {
-            Text("Logout")
-//        })
-        .font(.title)
+        VStack {
+            Spacer()
+            
+            HStack(alignment: .center , spacing: 10) {
+                
+                Spacer()
+                
+                Button(action: { withAnimation {
+                    presentationMode.wrappedValue.dismiss()
+                }
+
+                }, label: {
+                    Text("dismiss")
+                })
+            }
+        }
+        .frame(width: 200, height: 150, alignment: .center)
         .padding()
-        .frame(width: 400, height: 500, alignment: .center)
-        .background(Color.black)
     }
 }

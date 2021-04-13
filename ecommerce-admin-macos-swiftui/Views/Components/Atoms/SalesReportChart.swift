@@ -8,10 +8,7 @@
 import SwiftUI
 import LightChart
 
-
 struct SalesReportChart: View {
-    
-//    @State private var isPresented = false
     
     var body: some View {
         HStack() {
@@ -24,9 +21,7 @@ struct SalesReportChart: View {
                    
                     Spacer()
                     Button(action: {
-//                        withAnimation {
-//                            isPresented.toggle()
-//                        }
+               
                     }, label: {
                         Text("More")
                             .font(.system(size: 10, weight: .bold))
@@ -34,12 +29,8 @@ struct SalesReportChart: View {
                             .padding(.vertical, 4)
                             .background(Color.blue.opacity(0.2)).cornerRadius(5.0)
                             .foregroundColor(.blue)
-                            
                     })
                     .buttonStyle(PlainButtonStyle())
-//                    .sheet(isPresented: $isPresented, content: {
-//                       SheetView()
-//                    })
                 }
                 
               VStack {
@@ -60,24 +51,3 @@ struct SalesReportChart_Previews: PreviewProvider {
         HomeStack()
     }
 }
-//
-//struct SheetView: View {
-//
-//    @SwiftUI.Environment(\.presentationMode) var presentationMode
-//
-//
-//    var body: some View {
-//
-//        Button(action: { withAnimation {
-//            presentationMode.wrappedValue.dismiss()
-//        }
-//
-//        }, label: {
-//            Text("Logout")
-//        })
-//        .font(.title)
-//        .padding()
-//        .frame(width: 400, height: 500, alignment: .center)
-//        .background(Color.black)
-//    }
-//}

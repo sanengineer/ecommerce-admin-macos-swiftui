@@ -13,16 +13,23 @@ struct ProfileView: View {
     
     var body: some View {
         VStack {
-            Button("logout"){
-                DispatchQueue.main.async {
-                    self.settings.isloggedIn = false
-                }
+            
+            Button(action: {withAnimation {
+                self.settings.isloggedIn = false
+            }}, label: {
+                Text("Logout")
+            })
+            
+            Button(action: { withAnimation {
+                settings.isPresented.toggle()
                 
-                print("Log Out")
-                
-                print(settings.isloggedIn)
-//                    authController().authLogout()
-            }
+                print(settings.isPresented)
+            }}, label: {
+                Text("Button")
+            })
+            .sheet(isPresented: $settings.isPresented, content: {
+                ModalView()
+            })
         }
     }
 }
