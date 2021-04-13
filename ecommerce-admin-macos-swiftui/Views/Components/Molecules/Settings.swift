@@ -16,6 +16,7 @@ struct Settings: View {
                 authController().getKey()
             }
             
+            
             Text("Hello Settings")
         }
     }

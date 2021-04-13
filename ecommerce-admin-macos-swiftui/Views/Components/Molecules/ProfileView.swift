@@ -8,13 +8,20 @@
 import SwiftUI
 
 struct ProfileView: View {
+    
     @EnvironmentObject var settings: PublishedConstants
     
     var body: some View {
         VStack {
             Button("logout"){
-                self.settings.isloggedIn = false
-                    authController().authLogout()
+                DispatchQueue.main.async {
+                    self.settings.isloggedIn = false
+                }
+                
+                print("Log Out")
+                
+                print(settings.isloggedIn)
+//                    authController().authLogout()
             }
         }
     }

@@ -20,4 +20,7 @@ class PublishedConstants: ObservableObject {
     @Published var fieldPassword: String = ""
     
     @Published var rightBarExpanded = false
+    
+//    @SwiftUI.Environment(\.presentationMode) var presentationMode
+    
 }
