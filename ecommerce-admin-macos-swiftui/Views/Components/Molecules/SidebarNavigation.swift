@@ -13,6 +13,7 @@ struct SidebarNavigation: View {
     var body: some View {
 
             HStack {
+                
                 NavigationView{
                     VStack{
                         TabButton(image: "desktopcomputer", title: "Dashboard", selectedTab: $customerData.selectedTab)
@@ -27,7 +28,7 @@ struct SidebarNavigation: View {
                         
                         TabButton(image: "gearshape", title: "Settings", selectedTab: $customerData.selectedTab)
                             .padding(.bottom, 20)
-                    }
+                    }.padding(.horizontal, 30)
                     HStack{
                         HStack{
                             ZStack {
@@ -46,21 +47,7 @@ struct SidebarNavigation: View {
                        
                     }
                     .toolbar {
-                        
                     
-//                        ToolbarItem(placement: .navigation) {
-//                            Button(action: {
-//                                print("Hello Button")
-//                            }, label: {
-//                                Text("Button")
-//                            })
-//                        }
-//                        ToolbarItem(placement: .navigation) {
-//                            Button("New"){
-//
-//                                print("Hello World")
-//                            }
-//                        }
                         ToolbarItem(placement: .principal) {
 
                                 TopBar()

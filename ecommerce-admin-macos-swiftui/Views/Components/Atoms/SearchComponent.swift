@@ -25,7 +25,7 @@ struct SearchComponent: View {
             .padding(8.0)
             .textFieldStyle(PlainTextFieldStyle())
             .background(Color.black.opacity(0.1))
-            .font(.system(size: 12, weight: .medium, design: .default))
+            .font(.system(size: 12, weight: .medium))
                             .textFieldStyle(SearchFieldEditingStyle(focused:$searchFieldEditing))
     }
 //        .frame(width: screen.width - 30, alignment: .center)
