@@ -9,12 +9,7 @@ import SwiftUI
 
 struct AllMemberCard: View {
     var body: some View {
-        HStack{
-            Text("New Member Card")
-         }
-        .frame(width: 154, height: 99, alignment: .trailing)
-        .background(Color.red)
-        .cornerRadius(10)
+        CardInfoMedium(image: "rectangle.stack.person.crop" ,imageSize: 24, infoData: "9999+", infoDataSize: 40, title: "All Member", titleSize: 13 , subtitle: "Since Stand", colorFore: Color.orange, colorBack: Color.orange.opacity(0.1))
     }
 }
 

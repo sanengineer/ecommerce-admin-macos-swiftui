@@ -10,12 +10,7 @@ import SwiftUI
 struct SalesCard: View {
     
     var body: some View {
-//        HStack{
-            Text("Sales Card")
-//        }
-        .frame(width: 156, height: 99, alignment: .trailing)
-        .background(Color.red)
-        .cornerRadius(10)
+        CardInfoMedium(image: "tag", imageSize: 26, infoData: "9999+", infoDataSize: 40, title: "Sales Product", titleSize: 13, subtitle: "All Time", colorFore: Color.blue, colorBack: Color.blue.opacity(0.1))
     }
 }
 
