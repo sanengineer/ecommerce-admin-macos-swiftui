@@ -7,11 +7,13 @@
 
 import SwiftUI
 
+
+
 struct SalesReportChart: View {
     var body: some View {
-        HStack(alignment: .center) {
+        HStack() {
 
-            VStack(alignment: .center, spacing: nil, content: {
+            VStack{
                 
                 HStack{
                     Text("Sales Report").font(.system(size: 14, weight: .bold))
@@ -25,25 +27,31 @@ struct SalesReportChart: View {
                             .foregroundColor(.blue)
                     })
                     .buttonStyle(PlainButtonStyle())
-                }
+                }.background(Color.red)
                 
-                Spacer()
+//                Spacer()
                 
-                HStack {
-                    Spacer()
-                    Text("Chart")
-                    Spacer()
+              VStack {
+               
+//                    Spacer()
+                   
+                    
+//                    LineView(data: [0.4, 33.9, 40.0, 22.4, 10.5, 31.4, 11.67, 0.4, 33.9, 22.4 , 9.67, 33.9], title: "", legend: "k", style: ChartStyle(backgroundColor: Color.black, accentColor: Colors.OrangeStart, secondGradientColor: Colors.OrangeEnd, textColor: Color.white, legendTextColor: Color.white, dropShadowColor: Color.red ), valueSpecifier: "9", legendSpecifier: "3")
+//                        .frame(width: 610, height: 500, alignment: .center)
+                 
+//                    Spacer()
                 }
-//                .background(Color.green)
-//
-            })
-            .frame(width:634)
-//            .background(Color.blue)
+                .background(Color.green)
+               
+
+            }
+            .frame(width:634, height: 530)
+            .background(Color.blue)
             .padding(11)
 
             
         }
-        .frame(minWidth: 658, minHeight: 133, alignment: .trailing)
+        .frame(minWidth: 658, alignment: .trailing)
         .background(Color.primary.opacity(0.1))
         .cornerRadius(10)
     }
