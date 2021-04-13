@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LightChart
 
 
 
@@ -27,26 +28,27 @@ struct SalesReportChart: View {
                             .foregroundColor(.blue)
                     })
                     .buttonStyle(PlainButtonStyle())
-                }.background(Color.red)
+                }
+//                .background(Color.red)
                 
 //                Spacer()
                 
               VStack {
                
 //                    Spacer()
-                   
+                LightChartView(data: [0.4, 33.9, 40.0, 22.4, 10.5, 31.4, 11.67, 0.4, 33.9, 22.4 , 9.67, 33.9], type: .curved,visualType: .outline(color: .green, lineWidth: 2))
                     
 //                    LineView(data: [0.4, 33.9, 40.0, 22.4, 10.5, 31.4, 11.67, 0.4, 33.9, 22.4 , 9.67, 33.9], title: "", legend: "k", style: ChartStyle(backgroundColor: Color.black, accentColor: Colors.OrangeStart, secondGradientColor: Colors.OrangeEnd, textColor: Color.white, legendTextColor: Color.white, dropShadowColor: Color.red ), valueSpecifier: "9", legendSpecifier: "3")
 //                        .frame(width: 610, height: 500, alignment: .center)
                  
 //                    Spacer()
                 }
-                .background(Color.green)
+//                .background(Color.green)
                
 
             }
-            .frame(width:634, height: 530)
-            .background(Color.blue)
+            .frame(width:634, height: 130)
+//            .background(Color.blue)
             .padding(11)
 
             
