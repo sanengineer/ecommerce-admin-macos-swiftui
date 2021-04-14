@@ -23,4 +23,11 @@ class PublishedConstants: ObservableObject {
     
     @Published var isPresented: Bool = false
     
+    @State var products = [Product]()
+    
+    
+    
+    
+    
+    
 }
