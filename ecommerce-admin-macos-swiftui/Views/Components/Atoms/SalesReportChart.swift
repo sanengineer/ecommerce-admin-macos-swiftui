@@ -34,14 +34,14 @@ struct SalesReportChart: View {
                 }
                 
               VStack {
-                LightChartView(data: [0.4, 33.9, 40.0, 22.4, 10.5, 31.4, 11.67, 0.4, 33.9, 22.4 , 9.67, 33.9], type: .curved,visualType: .outline(color: .green, lineWidth: 2))
+                LightChartView(data: [0.4, 33.9, 10.0, 22.4, 10.5, 21.4, 11.67, 0.4, 63.9, 72.4 , 80.67, 100.9], type: .curved,visualType: .outline(color: .green, lineWidth: 2))
                 }
             }
             .frame(width:634, height: 130)
             .padding(11)
         }
         .frame(minWidth: 658, alignment: .trailing)
-        .background(Color.black.opacity(0.1))
+        .background(Color.gray.opacity(0.1))
         .cornerRadius(10)
     }
 }

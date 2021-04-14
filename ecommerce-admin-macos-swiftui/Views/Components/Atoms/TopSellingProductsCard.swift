@@ -6,10 +6,12 @@
 
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct TopSellingProductsCard: View {
     
     @State var products = [Product]()
+    @State var isAnimating: Bool = true
     
     var body: some View {
         
@@ -36,20 +38,35 @@ struct TopSellingProductsCard: View {
                 HStack{
                     ScrollView {
                         ForEach(products) { product in
-                            VStack {
-                            HStack(spacing: 13){
+                            LazyVStack {
+                                HStack(spacing: 13){
+                                
+//                                LazyHStack {
+                                    WebImage(url: URL(string: "\(product.image_featured)"), isAnimating: $isAnimating)
+                                        .customLoopCount(1)
+                                        .playbackRate(2.0)
+                                        .playbackMode(.bounce)
+                                        .resizable()
+                                      
+                                        .frame(width: 40, height: 40)
+                                        .cornerRadius(6.0)
+//                                }  .padding(2)
+                                
 
-                                Image(systemName: "person")
-//                                    Text(String(product.id))
-                                Text(product.name.capitalized).frame(width: 100, height: 100, alignment: .leading).lineSpacing(2)
-                                    .font(.system(size: 13, weight: .medium))
+
+                                Text(product.name).frame(width: 160, height: 100, alignment: .leading).lineSpacing(2)
+                                    .font(.system(size: 12, weight: .semibold))
    
-                                Spacer()
-                                Text("Rp. \(String(product.price))").frame(width: 100, height: 100, alignment: .leading).lineSpacing(2).font(.system(size: 13, weight: .medium))
+                               
+                                    Text("Rp. \(String(product.price))").frame(width: 90, height: 100, alignment: .leading).lineSpacing(2).font(.system(size: 12, weight: .semibold))
+                                  
+                              
+                               
 
                             }
-                            .frame(height:30)
-                            .padding(5)
+                            .offset(x: 1)
+                            .frame(height:50)
+                            .padding(2)
 //                            .background(Color.red)
                             }
                         }
@@ -60,7 +77,7 @@ struct TopSellingProductsCard: View {
                         }
                     }
                 }
-                .padding(.top, 20)
+                .padding(.top, 8)
             }
             .padding(13)
             .frame(width: 351, height: 301, alignment: .center)
