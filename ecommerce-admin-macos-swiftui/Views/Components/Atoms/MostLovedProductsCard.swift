@@ -8,13 +8,62 @@
 import SwiftUI
 
 struct MostLovedProductsCard: View {
+    
+    @State var products = [Product]()
+    @State var isAnimating: Bool = true
+    
     var body: some View {
-        HStack{
-            Text("Most Loved Product")
+        
+        HStack {
+            VStack{
+                HStack(alignment:.top){
+                    VStack(alignment: .leading){
+                        Text("Most Loved Products").font(.system(size: 14, weight: .bold))
+                    }
+                
+                    Spacer()
+                    
+                    Button(action: {}, label: {
+                        Text("More")
+                            .font(.system(size: 10, weight: .bold))
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 4)
+                            .background(Color.blue.opacity(0.2)).cornerRadius(5.0)
+                            .foregroundColor(.blue)
+                    })
+                    .buttonStyle(PlainButtonStyle())
+                }
+                Spacer()
+                HStack{
+                    ScrollView {
+                        ForEach(products) { product in
+                            ListWithImage(
+                                listTitle: product.name ,
+                                listSubTittle: "❤️ 999",
+//                                listSubTittle: String(product.price),
+                                isAnimating: $isAnimating,
+                                imageUrl: product.image_featured,
+                                offsetListSubtitle: 20
+                            )
+                        }
+                        .onAppear{ productRestApi().getProducts{
+                            products in
+                            self.products = products
+                                }
+                            }
+                    }
+                }
+                .padding(.top, 8)
+            }
+            .padding(13)
+            .frame(width: 322, height: 301, alignment: .center)
+            .background(Color.gray.opacity(0.1))
+            .cornerRadius(10)
         }
-        .frame(width: 293, height: 301, alignment: .trailing)
-        .background(Color.red)
-        .cornerRadius(10)
+        
+        
+    
+
     }
 }
 

@@ -36,35 +36,25 @@ struct TopSellingProductsCard: View {
                 }
                 Spacer()
                 HStack{
-                    ScrollView {
+                    ScrollView{
                         ForEach(products) { product in
                             LazyVStack {
                                 HStack(spacing: 13){
                                 
-//                                LazyHStack {
                                     WebImage(url: URL(string: "\(product.image_featured)"), isAnimating: $isAnimating)
                                         .customLoopCount(1)
                                         .playbackRate(2.0)
                                         .playbackMode(.bounce)
                                         .resizable()
-                                      
                                         .frame(width: 40, height: 40)
                                         .cornerRadius(6.0)
-//                                }  .padding(2)
-                                
-
 
                                 Text(product.name).frame(width: 160, height: 100, alignment: .leading).lineSpacing(2)
                                     .font(.system(size: 12, weight: .semibold))
-   
-                               
-                                    Text("Rp. \(String(product.price))").frame(width: 90, height: 100, alignment: .leading).lineSpacing(2).font(.system(size: 12, weight: .semibold))
-                                  
-                              
-                               
-
+          
+                                    Text("Rp. \(String(product.price))").frame(width: 90, height: 100, alignment: .leading).lineSpacing(2).font(.system(size: 12, weight: .semibold)).offset(x:-3)
                             }
-                            .offset(x: 1)
+                            .offset(x: 10)
                             .frame(height:50)
                             .padding(2)
 //                            .background(Color.red)
@@ -80,7 +70,7 @@ struct TopSellingProductsCard: View {
                 .padding(.top, 8)
             }
             .padding(13)
-            .frame(width: 351, height: 301, alignment: .center)
+            .frame(width: 323, height: 301, alignment: .center)
             .background(Color.gray.opacity(0.1))
             .cornerRadius(10)
         }
