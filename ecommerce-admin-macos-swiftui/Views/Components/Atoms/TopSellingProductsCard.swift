@@ -3,7 +3,7 @@
 //  ecommerce-admin-macos-swiftui
 //
 //  Created by San Engineer on 13/04/21.
-//
+
 
 import SwiftUI
 
@@ -45,7 +45,8 @@ struct TopSellingProductsCard: View {
                                     .font(.system(size: 13, weight: .medium))
    
                                 Spacer()
-                                Text("Rp. \(String(product.price))").frame(width: 100, height: 100, alignment: .trailing).lineSpacing(2).font(.system(size: 13, weight: .medium))
+                                Text("Rp. \(String(product.price))").frame(width: 100, height: 100, alignment: .leading).lineSpacing(2).font(.system(size: 13, weight: .medium))
+
                             }
                             .frame(height:30)
                             .padding(5)
@@ -69,6 +70,7 @@ struct TopSellingProductsCard: View {
     }
 }
 
+
 struct TopSellingProductsCard_Previews: PreviewProvider {
     static var previews: some View {
        TopSellingProductsCard()
@@ -76,38 +78,7 @@ struct TopSellingProductsCard_Previews: PreviewProvider {
 }
 
 
-
-
-
-//struct SearchFieldEditingStyle: TextFieldStyle {
-//        @Binding var focused : Bool
-//        func _body(configuration: TextField<Self._Label>) -> some View {
-//            configuration
-//                .padding(2)
-//                .background(RoundedRectangle(cornerRadius: 10, style: .continuous)
-//                                .stroke(focused ? Color.red : Color.white, lineWidth: 2)).padding()
-//        }
-//    }
-
-
-//struct ListStylingTopSelling: ListStyle {
-//    static func _makeView<SelectionValue>(value: _GraphValue<_ListValue<ListStylingTopSelling, SelectionValue>>, inputs: _ViewInputs) -> _ViewOutputs where SelectionValue : Hashable {
-//
-//    }
-//
-//    static func _makeViewList<SelectionValue>(value: _GraphValue<_ListValue<ListStylingTopSelling, SelectionValue>>, inputs: _ViewListInputs) -> _ViewListOutputs where SelectionValue : Hashable {
-//        <#code#>
-//    }
-//
-//}
-
 struct ClearCell: ViewModifier {
-    
-//    func preferredColorScheme(_ colorScheme: ColorScheme?) -> some View{
-//        VStack{}.background(Color.red.opacity(0.0))
-//    }
-//
-    
       func body(content: Content) -> some View {
           content
             .background(Color.red)
