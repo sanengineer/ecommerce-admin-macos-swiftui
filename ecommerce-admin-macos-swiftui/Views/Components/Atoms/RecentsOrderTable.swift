@@ -49,7 +49,7 @@ struct RecentsOrderTable: View {
                                 .frame(width: 90, alignment: .leading).lineSpacing(2).font(.system(size: 12, weight: .bold))
                                     .offset(x: 30)
 
-                            Text("Status").frame(width: 70, alignment: .center).lineSpacing(2).font(.system(size: 12, weight: .bold)).offset(x: -18)
+                            Text("Status").frame(width: 64, alignment: .center).lineSpacing(2).font(.system(size: 12, weight: .bold)).offset(x: -18)
 
 
                             Text("Total").frame(width: 90, alignment: .leading).lineSpacing(2).font(.system(size: 12, weight: .bold))
@@ -85,7 +85,7 @@ struct RecentsOrderTable: View {
                                         .frame(width: 90,alignment: .leading).lineSpacing(2).font(.system(size: 12, weight: .regular))
                                             .offset(x: 30)
 
-                                    Text("Finished").frame(width: 60, height: 15, alignment: .center).lineSpacing(2).font(.system(size: 10, weight: .bold)).padding(2).foregroundColor(Color.black.opacity(0.6)).background(Color.green.opacity(0.5)).cornerRadius(5.0).offset(x: -14)
+                                    Text("Finished").frame(width: 60, height: 15, alignment: .center).lineSpacing(2).font(.system(size: 11, weight: .bold)).padding(2).foregroundColor(Color.black.opacity(0.6)).background(Color.green.opacity(0.5)).cornerRadius(5.0).offset(x: -14)
 
                                     Text(order.total ?? "Rp 9.999.999").frame(width: 90, alignment: .leading).lineSpacing(2).font(.system(size: 12, weight: .regular))
 

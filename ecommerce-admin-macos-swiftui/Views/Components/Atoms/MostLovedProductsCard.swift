@@ -39,7 +39,7 @@ struct MostLovedProductsCard: View {
                         ForEach(products) { product in
                             ListWithImage(
                                 listTitle: product.name ,
-                                listSubTittle: "❤️ 999",
+                                listSubTittle: "999",
 //                                listSubTittle: String(product.price),
                                 isAnimating: $isAnimating,
                                 imageUrl: product.image_featured,

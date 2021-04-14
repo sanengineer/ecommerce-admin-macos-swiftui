@@ -25,10 +25,12 @@ struct ListWithImage: View {
                     .playbackMode(.bounce)
                     .resizable()
                     .frame(width: 40, height: 40)
-                    .cornerRadius(6.0)
+                    .cornerRadius(6.0).offset(x: 18)
 
             Text(listTitle).frame(width: 160, height: 100, alignment: .leading).lineSpacing(2)
-                .font(.system(size: 12, weight: .semibold))
+                .font(.system(size: 12, weight: .semibold)).offset(x: 18)
+                
+                Image(systemName: "heart.fill").frame(width: 20).font(.system(size: 14)).foregroundColor(Color.red.opacity(0.4)).offset(x: 26)
  
                 Text(listSubTittle).frame(width: 90, height: 100, alignment: .leading).lineSpacing(2).font(.system(size: 12, weight: .semibold)).offset(x: offsetListSubtitle)
         }
