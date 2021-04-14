@@ -60,10 +60,6 @@ struct MostLovedProductsCard: View {
             .background(Color.gray.opacity(0.1))
             .cornerRadius(10)
         }
-        
-        
-    
-
     }
 }
 
