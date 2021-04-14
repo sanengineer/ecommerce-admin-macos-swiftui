@@ -10,8 +10,6 @@ import SwiftUI
 struct TopSellingProductsCard: View {
     
     @State var products = [Product]()
-
-//    @State var productEnvObj: PublishedConstants
     
     var body: some View {
         
@@ -37,28 +35,21 @@ struct TopSellingProductsCard: View {
                 Spacer()
                 HStack{
                     ScrollView {
-                        
                         ForEach(products) { product in
-                   
                             VStack {
-
                             HStack(spacing: 13){
 
                                 Image(systemName: "person")
 //                                    Text(String(product.id))
-                                Text(product.name.capitalized)
-                                    .font(.system(size: 12, weight: .semibold))
-                            Spacer()
-                                        Text(product.descriptions)
-                                Text(String(product.price))
-
-
-
+                                Text(product.name.capitalized).frame(width: 100, height: 100, alignment: .leading).lineSpacing(2)
+                                    .font(.system(size: 13, weight: .medium))
+   
+                                Spacer()
+                                Text("Rp. \(String(product.price))").frame(width: 100, height: 100, alignment: .trailing).lineSpacing(2).font(.system(size: 13, weight: .medium))
                             }
-
                             .frame(height:30)
-                            .padding(0)
-                            .background(Color.red)
+                            .padding(5)
+//                            .background(Color.red)
                             }
                         }
                     .onAppear{ productRestApi().getProducts{
@@ -67,13 +58,11 @@ struct TopSellingProductsCard: View {
                             }
                         }
                     }
-                    
                 }
                 .padding(.top, 20)
-      
             }
             .padding(13)
-            .frame(width: 351, height: 301, alignment: .trailing)
+            .frame(width: 351, height: 301, alignment: .center)
             .background(Color.gray.opacity(0.1))
             .cornerRadius(10)
         }
