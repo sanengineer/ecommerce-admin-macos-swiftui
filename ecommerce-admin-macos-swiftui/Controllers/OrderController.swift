@@ -10,23 +10,42 @@ import Foundation
 class orderRestApi {
     func getOrders(completion:@escaping ([Order]) -> ()){
         
+    let semaphore = DispatchSemaphore (value: 0)
     let url = Environment.orderURL.absoluteURL
-    
-    let request = URLRequest(url: url)
-    
-    print(request)
-    
-    URLSession.shared.dataTask(with: request){ (data, response, error) in
+    let token = UserDefaults.standard.string(forKey: "tokenString_local")!
         
-    let orders = try! JSONDecoder().decode([Order].self, from: data!)
+    var request = URLRequest(url: url)
+        
+    request.httpMethod = "GET"
+    request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+    print("\nREQUEST: \n \(request)")
+    print("\nTOKEN: \n \(token)")
     
-    print(orders)
+    URLSession.shared.dataTask(with: request){(data, response, error) in
+
+        guard let data = data else {
+          print(String(describing: error))
+          semaphore.signal()
+          return
+        }
+        
+        do {
+            let orders = try JSONDecoder().decode([Order].self, from: data)
+            
+            DispatchQueue.main.async {
+                completion(orders)
+            }
+
+            print("DATA:\(data)")
+            print(orders)
+        } catch let err {
+            print("Session Error: ",err)
+        }
+
+     
     
-    DispatchQueue.main.async {
-        completion(orders)
-    }
-    
-    print("DATA:\(data!)")
+    print("DATA:\(data)")
     print("RESPONSE:\(response!)")
     print("ERROR:\(error?.localizedDescription ?? "uknown error")")
     

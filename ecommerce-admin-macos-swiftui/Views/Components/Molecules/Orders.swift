@@ -16,13 +16,13 @@ struct Orders: View {
             VStack {
                 List(orders, id: \.id) { order in
                     VStack(alignment: .leading) {
-                        Text(order.name ?? "no name")
+                        Text(order.name )
                             .font(.system(size: 14, weight: .bold))
                         Text(order.user_id).background(Color.red)
                             .font(.system(size: 12, weight: .medium))
-                        Text(order.shipping_platform ?? "notfound" ).background(Color.red)
+                        Text(order.shipping_platform ?? "no data").background(Color.red)
                             .font(.system(size: 12, weight: .medium))
-                        Text(order.order_geo_loc ?? "not found").background(Color.red)
+                        Text(order.order_geo_loc ?? "no data").background(Color.red)
                             .font(.system(size: 12, weight: .medium))
                         
                     }

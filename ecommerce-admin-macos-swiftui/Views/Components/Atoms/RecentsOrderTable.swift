@@ -10,6 +10,22 @@ import SwiftUI
 struct RecentsOrderTable: View {
     
     @State var orders = [Order]()
+    @State var orderStatus: String = ""
+    
+    var bgColorToShow: Color {
+        switch orderStatus {
+                case "pending":
+                    return .red
+                case "process":
+                    return .green
+                case "done":
+                    return .blue
+                case "canceled":
+                    return .black
+                default:
+                    return .gray
+            }
+        }
     
     var body: some View {
         HStack{
@@ -72,22 +88,34 @@ struct RecentsOrderTable: View {
                             LazyVStack {
                                 HStack(spacing: 13){
 
-                                Text(order.shipping_track_id ?? "271u8198hxjshYSxv").frame(width: 120, alignment: .leading).lineSpacing(2)
+                                Text(order.shipping_track_id ?? "no data").frame(width: 120, alignment: .leading).lineSpacing(2)
                                     .font(.system(size: 12, weight: .regular))
                                     .offset(x: -30)
 
 //                                    Text(order.name?.capitalized ?? "San Engineer")
-                                    Text("San Engineer Developer")
+                                    Text(order.name)
                                         .frame(width: 140, alignment: .leading).lineSpacing(2).font(.system(size: 12, weight: .regular))
                                         .offset(x: -6)
 
-                                    Text("999")
+                                    Text(order.shipping_cost ??  "no data")
                                         .frame(width: 90,alignment: .leading).lineSpacing(2).font(.system(size: 12, weight: .regular))
                                             .offset(x: 30)
 
-                                    Text("Finished").frame(width: 60, height: 15, alignment: .center).lineSpacing(2).font(.system(size: 11, weight: .bold)).padding(2).foregroundColor(Color.black.opacity(0.6)).background(Color.green.opacity(0.5)).cornerRadius(5.0).offset(x: -14)
+                                    
+                                    switch order.status {
+                                    case "process": Text(order.status).frame(width: 60, height: 18).lineSpacing(2).font(.system(size:11, weight:.bold)).foregroundColor(Color.white.opacity(0.4)).background(Color.orange.opacity(1.0)).cornerRadius(5.0).offset(x:-14)
+                                    case "done": Text(order.status).frame(width: 60, height: 18).lineSpacing(2).font(.system(size:11, weight:.bold)).foregroundColor(Color.green.opacity(1.0)).background(Color.green.opacity(0.3)).cornerRadius(5.0).offset(x:-14)
+                                    case "canceled": Text(order.status).frame(width: 60, height: 18).lineSpacing(2).font(.system(size:11, weight:.bold)).foregroundColor(Color.red.opacity(1.0)).background(Color.red.opacity(0.3)).cornerRadius(5.0).offset(x:-14)
+                                    default: Text(order.status).frame(width: 60, height: 18).lineSpacing(2).font(.system(size:11, weight:.bold)).foregroundColor(Color.white.opacity(0.4)).background(Color.yellow.opacity(1.0)).cornerRadius(5.0).offset(x:-14)
+                                    }
+                                   
+//                                    Text(order.status).frame(width: 60, height: 15, alignment: .center).lineSpacing(2).font(.system(size: 11, weight: .bold)).padding(2).foregroundColor(Color.white.opacity(0.6))
+//                                        .background(bgColorToShow)
+//                                        .cornerRadius(5.0).offset(x: -14)
+                                    
+                           
 
-                                    Text(order.total ?? "Rp 9.999.999").frame(width: 90, alignment: .leading).lineSpacing(2).font(.system(size: 12, weight: .regular))
+                                    Text(order.total ?? "no data").frame(width: 90, alignment: .leading).lineSpacing(2).font(.system(size: 12, weight: .regular))
 
 
                             }
@@ -125,3 +153,4 @@ struct RecentsOrderTable_Previews: PreviewProvider {
         RecentsOrderTable()
     }
 }
+
