@@ -8,8 +8,15 @@
 import SwiftUI
 
 struct AllMemberCard: View {
+    
+    @State var usersNumber = Int()
+    
     var body: some View {
-        CardInfoMedium(image: "rectangle.stack.person.crop" ,imageSize: 24, infoData: "9999+", infoDataSize: 40, title: "All Member", titleSize: 13 , subtitle: "Since Stand", colorFore: Color.orange, colorBack: Color.orange.opacity(0.1))
+        CardInfoMedium(image: "rectangle.stack.person.crop" ,imageSize: 24, infoData: String(Int(usersNumber)), infoDataSize: 40, title: "All Member", titleSize: 13 , subtitle: "Since Stand", colorFore: Color.orange, colorBack: Color.orange.opacity(0.1))
+        
+            .onAppear { fetchApi().getUsersNumber { usersNumber in
+                self.usersNumber = usersNumber
+            }}
     }
 }
 

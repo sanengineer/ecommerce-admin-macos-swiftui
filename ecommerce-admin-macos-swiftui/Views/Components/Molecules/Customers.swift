@@ -5,23 +5,32 @@ import SwiftUI
 
 struct UserView: View {
     
-    @State var users = [User]()
+   
     @State private var showText = true
    
     var body: some View {
-        HStack {
-            VStack {
-                List(users, id: \.id) { user in
-                    HStack(spacing: 40) {
-                        Text(user.name)
-                            .font(.system(size: 12, weight: .bold))
-                        Text(user.username).background(Color.red)
-                            .font(.system(size: 12, weight: .medium))
-                    }.background(Color.red)
-                }
-            .onAppear { fetchApi().getUsers { users in
-                self.users = users } }
-            }.ignoresSafeArea(.container)
+        ScrollView{
+            HStack {
+                VStack (spacing: 13) {
+                    HStack(spacing: 13) {
+                            LineChartCard()
+                            TopLocationCard()
+                            GenderPieChartCard()
+                        }
+                    HStack {
+                       UserTableCard()
+                    }
+                    
+                    Spacer()
+                   
+                    
+                
+                }.ignoresSafeArea(.container)
+            }
+            .padding(.top, 13)
+            .padding(.bottom, 20)
+            .padding(.horizontal, 20)
+            .frame(width: 685, alignment: .center)
         }
        }
   }
