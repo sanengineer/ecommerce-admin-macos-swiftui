@@ -12,8 +12,8 @@ class fetchApi {
     
     let request =  URLRequest(url: url)
     
-    print(request)
-
+    //debug
+    print("\nREQUEST_GET_USERS:", request, "\n")
 
     URLSession.shared.dataTask(with: request){(data, response, error) in
         
@@ -35,7 +35,7 @@ class fetchApi {
             print("ERROR:", err)
         }
      
-        
+        //debug
         print("DATA:\(data)")
         print("RESPONSE:\(response!)")
         print("ERROR MESSAGE: \(error?.localizedDescription ?? "Unknown Error")")
@@ -58,17 +58,19 @@ class fetchApi {
             
             do {
                 let users_number = try JSONDecoder().decode(Int.self, from: data)
-                
                 DispatchQueue.main.async {
                     completion(users_number)
                 }
-                
             } catch let err {
+                //debug
                 print("\nERROR_USER_NUMBER:", err, "\n")
             }
             
-            semaphore.signal()
+            //debug
             print("\nDATA_USER_NUMBER:",data, "\n")
+            
+            semaphore.signal()
+            
         }
         
         task.resume()

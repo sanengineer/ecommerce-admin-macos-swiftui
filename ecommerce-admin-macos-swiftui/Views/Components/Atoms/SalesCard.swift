@@ -9,8 +9,14 @@ import SwiftUI
 
 struct SalesCard: View {
     
+    @State var orderNumber = Int()
+    
     var body: some View {
-        CardInfoMedium(image: "tag", imageSize: 26, infoData: "9999+", infoDataSize: 40, title: "Sales Product", titleSize: 13, subtitle: "All Time", colorFore: Color.blue, colorBack: Color.blue.opacity(0.1))
+        CardInfoMedium(image: "tag", imageSize: 26, infoData: String(Int(orderNumber)), infoDataSize: 40, title: "Sales Product", titleSize: 13, subtitle: "All Time", colorFore: Color.blue, colorBack: Color.blue.opacity(0.1))
+        
+            .onAppear { orderRestApi().getOrdersNumber { orders_number in
+                self.orderNumber = orders_number
+            }}
     }
 }
 
