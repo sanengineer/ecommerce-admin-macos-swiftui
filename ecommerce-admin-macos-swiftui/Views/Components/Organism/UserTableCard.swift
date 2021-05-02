@@ -19,9 +19,7 @@ struct UserTableCard: View {
                         Text("Recent User")
                             .font(.system(size: 14, weight: .bold))
                     }
-                    
                     Spacer()
-                    
                 }
                 
                 VStack{
@@ -33,14 +31,14 @@ struct UserTableCard: View {
                                 .font(.system(size: 12, weight: .bold))
 //                                .offset(x: -30)
                             
-                            Text("Email")
+                            Text("Phone")
                                 .frame(width: 120, alignment: .leading)
                                 .lineSpacing(2)
                                 .font(.system(size: 12, weight: .bold))
 //                                .offset(x: -30)
                             
-                            Text("Phone")
-                                .frame(width: 120, alignment: .leading)
+                            Text("Email")
+                                .frame(width: 180, alignment: .leading)
                                 .lineSpacing(2)
                                 .font(.system(size: 12, weight: .bold))
 //                                .offset(x: -30)
@@ -51,7 +49,6 @@ struct UserTableCard: View {
                                 .font(.system(size: 12, weight: .bold))
 //                                .offset(x: -30)
                         }
-                        
                     }
                     .offset(x: 10)
                     .frame(height: 26)
@@ -69,29 +66,29 @@ struct UserTableCard: View {
                                 Text(user.name)
                                     .frame(width: 120, alignment: .leading)
                                     .lineSpacing(2)
-                                    .font(.system(size: 12, weight: .bold))
+                                    .font(.system(size: 12, weight: .light))
     //                                .offset(x: -30)
                                 
-                                Text(user.mobile ?? "no conctact")
+                                Text(user.mobile ?? "no contact")
                                     .frame(width: 120, alignment: .leading)
                                     .lineSpacing(2)
-                                    .font(.system(size: 12, weight: .bold))
+                                    .font(.system(size: 12, weight: .light))
     //                                .offset(x: -30)
                                 
-                                Text(user.email)
-                                    .frame(width: 120, alignment: .leading)
+                                Text(user.email ?? "no email")
+                                    .frame(width: 180, alignment: .leading)
                                     .lineSpacing(2)
-                                    .font(.system(size: 12, weight: .bold))
+                                    .font(.system(size: 12, weight: .light))
     //                                .offset(x: -30)
                                 
                                 Text(user.city ?? "no city")
                                     .frame(width: 120, alignment: .leading)
                                     .lineSpacing(2)
-                                    .font(.system(size: 12, weight: .bold))
+                                    .font(.system(size: 12, weight: .light))
     //                                .offset(x: -30)
                             }
                             .offset(x: 10)
-                            .frame(height: 10)
+                            .frame(height: 14)
                             .padding(2)
                             
                         }

@@ -24,6 +24,7 @@ struct TopBar: View {
                         }, label: {
                             Image(systemName: "sidebar.squares.left")
                                 .font(.system(size: 14, weight: .semibold))
+                                .foregroundColor(Color.primary)
                         })        
                     }
                     VStack {
@@ -35,6 +36,7 @@ struct TopBar: View {
                         }}, label: {
                             Image(systemName: "sidebar.squares.right")
                                 .font(.system(size: 14, weight: .semibold))
+                                .foregroundColor(Color.primary)
                         })
                     }
                 }

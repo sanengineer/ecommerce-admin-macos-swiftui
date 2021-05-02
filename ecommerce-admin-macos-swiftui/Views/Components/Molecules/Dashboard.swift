@@ -18,9 +18,9 @@ struct Dashboard: View {
                             HStack(spacing: 13) {
     //                            Spacer()
                                 NewMemberCard()
-                                AllMemberCard()
-                                EmptyStockCard()
-                                SalesCard()
+                                AllMemberCard(widthFrame: 154)
+                                EmptyStockCard(widthFrame: 154)
+                                SalesCard(widthFrame: 154)
     //                            Spacer()
                             }
                             

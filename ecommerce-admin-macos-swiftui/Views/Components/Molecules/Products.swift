@@ -12,26 +12,35 @@ struct Products: View {
     @State var products = [Product]()
     
     var body: some View {
-        HStack{
-            VStack{
-                List(products, id: \.id) { product in
-                    
-                    VStack(alignment: .leading){
-//                        Text(String(product.id.self))
-                        Text(product.name)
-                        Text(product.image_featured)
-                        Text(product.descriptions)
-                        Text(String(product.price))
+        ScrollView(){
+            HStack{
+                VStack(spacing: 13){
+                    HStack (spacing: 13){
+                        AllProductCard(widthFrame: 152)
+                        EmptyStockCard(widthFrame: 150)
                         
-                    }
-                    
-                }.onAppear{ productRestApi().getProducts{
-                    products in
-                    self.products = products
+                        ProductIndoCardSquare(widthFrame: 110, heightFrame: 99, paddingBottom: 8, imageSize: 42, titleFontSize: 13, subtitleFontSize: 9)
+                                VStack(spacing: 13){
+                                    HStack(spacing: 13){
+                                        ProductIndoCardSquare(widthFrame: 96, heightFrame: 43, paddingBottom: 30)
+                                        ProductIndoCardSquare(widthFrame: 96, heightFrame: 43, paddingBottom: 30)
+                                    }
+                                    HStack(spacing: 13){
+                                        ProductIndoCardSquare(widthFrame: 96, heightFrame: 43, paddingBottom: 30)
+                                        ProductIndoCardSquare(widthFrame: 96, heightFrame: 43, paddingBottom: 30)
+                                    }
+                            }
+                  
+                   
                 }
                     
-                }
+                    ProductsTableCard()
             }
+            .padding(.top, 13)
+            .padding(.bottom, 20)
+            .padding(.horizontal, 20)
+            .frame(width: 685, alignment: .center)
+        }
         }
     }
 }

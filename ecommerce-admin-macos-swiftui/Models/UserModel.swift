@@ -4,14 +4,14 @@ struct User: Codable, Identifiable {
     let id: UUID
     let name: String
     let mobile: String?
-    let email: String
+    let email: String?
     let city: String?
     
     init(
         id: UUID,
         name: String,
         mobile: String?,
-        email: String,
+        email: String?,
         city: String?
     ){
         self.id = id

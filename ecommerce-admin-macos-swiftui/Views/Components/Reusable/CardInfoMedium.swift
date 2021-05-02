@@ -18,6 +18,7 @@ struct CardInfoMedium: View {
     var subtitle: String
     var colorFore: Color
     var colorBack: Color
+    var widthFrame: CGFloat
     
     
     var body: some View {
@@ -53,7 +54,7 @@ struct CardInfoMedium: View {
             
         }
         .padding(10)
-        .frame(width: 154, height: 99, alignment: .trailing)
+        .frame(width: widthFrame, height: 99, alignment: .trailing)
         .background(colorBack)
         .cornerRadius(10)
         

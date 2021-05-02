@@ -2,15 +2,17 @@ import Foundation
 
 class fetchApi {
     func getUsers(completion:@escaping ([User]) -> ()){
-//
-//    guard let url = URL(string:  Environment.userURL.absoluteURL ) else {
-//        print("WRONG URL")
-//        return
-//    }
+
     let semaphore = DispatchSemaphore (value: 0)
     let url = Environment.userURL.absoluteURL
+        
+    guard let token = UserDefaults.standard.string(forKey: "tokenString_local") else {
+        print(String(describing: Error.self))
+        return
+        }
     
-    let request =  URLRequest(url: url)
+    var request =  URLRequest(url: url)
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
     
     //debug
     print("\nREQUEST_GET_USERS:", request, "\n")
