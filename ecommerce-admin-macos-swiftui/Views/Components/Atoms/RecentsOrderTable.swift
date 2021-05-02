@@ -88,6 +88,10 @@ struct RecentsOrderTable: View {
                     .frame(height:26)
                     .padding(2)
                     }
+                    
+                    Rectangle()
+                        .foregroundColor(Color.gray.opacity(0.2))
+                        .frame(height: 1)
                 }
                 
                 .onAppear{ orderRestApi().getOrders { orders in

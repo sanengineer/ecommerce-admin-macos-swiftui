@@ -11,6 +11,8 @@ class PublishedConstants: ObservableObject {
     
     @Published var selectedTab = "Dashboard"
     
+    @Published var selectedTabOrderStatus = "All Order"
+    
     @Published var authenticate: Bool = false
 
     @Published var isloggedIn: Bool = false

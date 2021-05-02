@@ -14,8 +14,8 @@ struct ProductsTableCard: View {
     @State var isAnimating: Bool = true
     @State var pickTabProduct = "All"
     @State var productToggleOnStockActive = true
-    @State var productSelectEachToggleActive = true
-    @State var productSelectAllToggleActive = true
+    @State var productSelectEachToggleActive = false
+    @State var productSelectAllToggleActive = false
     
     var body: some View {
         HStack {

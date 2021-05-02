@@ -12,25 +12,18 @@ struct Orders: View {
     @State var orders = [Order]()
     
     var body: some View {
-        HStack{
-            VStack {
-                List(orders, id: \.id) { order in
-                    VStack(alignment: .leading) {
-                        Text(order.name )
-                            .font(.system(size: 14, weight: .bold))
-                        Text(order.user_id).background(Color.red)
-                            .font(.system(size: 12, weight: .medium))
-                        Text(order.shipping_platform ?? "no data").background(Color.red)
-                            .font(.system(size: 12, weight: .medium))
-                        Text(order.order_geo_loc ?? "no data").background(Color.red)
-                            .font(.system(size: 12, weight: .medium))
-                        
-                    }
+        ScrollView{
+            HStack{
+                VStack(spacing: 13){
+                    OrdersTableCard()
                 }
-                .onAppear { orderRestApi().getOrders { orders in
-                self.orders = orders } }
-            }.ignoresSafeArea(.container)
+                .padding(.top, 13)
+                .padding(.bottom, 20)
+                .padding(.horizontal, 20)
+                .frame(width: 685, alignment: .center)
+            }
         }
+       
     }
 }
 
