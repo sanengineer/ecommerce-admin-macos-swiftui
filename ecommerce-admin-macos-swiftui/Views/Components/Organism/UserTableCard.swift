@@ -10,6 +10,7 @@ import SwiftUI
 struct UserTableCard: View {
     
     @State var users = [User]()
+    @State var pickTabUsers = "Recently Added"
     
     var body: some View {
         HStack {
@@ -20,6 +21,22 @@ struct UserTableCard: View {
                             .font(.system(size: 14, weight: .bold))
                     }
                     Spacer()
+                    VStack {
+                        Picker("Picker", selection: $pickTabUsers) {
+                            Text("Recently Added")
+                                .font(.system(size: 10, weight: .medium))
+                                .tag("Recently Added")
+                            Text("Ascending By Name")
+                                .font(.system(size: 10, weight: .medium))
+                                .tag("Ascending By Name")
+                            Text("Descending By Name")
+                                .font(.system(size: 10, weight: .medium))
+                                .tag("Descending By Name")
+                        }
+                        
+                        .labelsHidden()
+                    }
+                    .frame(width: 138)
                 }
                 
                 VStack{
@@ -51,7 +68,7 @@ struct UserTableCard: View {
                         }
                     }
                     .offset(x: 10)
-                    .frame(height: 26)
+                    .frame(height: 47)
                     .padding(2)
                 }
                 .frame(width: 618, alignment: .leading)
@@ -88,7 +105,7 @@ struct UserTableCard: View {
     //                                .offset(x: -30)
                             }
                             .offset(x: 10)
-                            .frame(height: 14)
+                            .frame(height: 47)
                             .padding(2)
                             
                         }
