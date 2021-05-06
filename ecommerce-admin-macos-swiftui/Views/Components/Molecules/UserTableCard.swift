@@ -9,8 +9,79 @@ import SwiftUI
 
 struct UserTableCard: View {
     
-    @State var users = [User]()
+    @State var users: [User]?
     @State var pickTabUsers = "Recently Added"
+    
+    var loader: some View {
+        if let unwrappedUsers = users {
+            return AnyView (
+                ForEach(unwrappedUsers){ user in
+                    LazyVStack (alignment: .leading) {
+                        HStack(spacing: 13){
+                            Text(user.name)
+                                .frame(width: 120, alignment: .leading)
+                                .lineSpacing(2)
+                                .font(.system(size: 12, weight: .light))
+//                                .offset(x: -30)
+                            
+                            Text(user.mobile ?? "no contact")
+                                .frame(width: 120, alignment: .leading)
+                                .lineSpacing(2)
+                                .font(.system(size: 12, weight: .light))
+//                                .offset(x: -30)
+                            
+                            Text(user.email ?? "no email")
+                                .frame(width: 180, alignment: .leading)
+                                .lineSpacing(2)
+                                .font(.system(size: 12, weight: .light))
+//                                .offset(x: -30)
+                            
+                            Text(user.city ?? "no city")
+                                .frame(width: 120, alignment: .leading)
+                                .lineSpacing(2)
+                                .font(.system(size: 12, weight: .light))
+//                                .offset(x: -30)
+                        }
+                        .offset(x: 10)
+                        .frame(height: 47)
+                        .padding(2)
+                        
+                    }
+                }
+            )
+        }
+        else {
+            return AnyView (
+                ForEach(0..<10){ _ in
+                    LazyVStack (alignment: .leading) {
+                        HStack(spacing: 13){
+                            Text("....... .......")
+                                .frame(width: 120, alignment: .leading)
+                                .lineSpacing(2)
+                                .font(.system(size: 12, weight: .light))
+                            Text("...........")
+                                .frame(width: 120, alignment: .leading)
+                                .lineSpacing(2)
+                                .font(.system(size: 12, weight: .light))
+                            Text("......................")
+                                .frame(width: 180, alignment: .leading)
+                                .lineSpacing(2)
+                                .font(.system(size: 12, weight: .light))
+                            Text("..........")
+                                .frame(width: 120, alignment: .leading)
+                                .lineSpacing(2)
+                                .font(.system(size: 12, weight: .light))
+                        }
+                        .offset(x: 10)
+                        .frame(height: 47)
+                        .padding(2)
+                        
+                    }
+                    .redacted(reason: .placeholder)
+                }
+            )
+        }
+    }
     
     var body: some View {
         HStack {
@@ -77,39 +148,7 @@ struct UserTableCard: View {
                 
                 
                 VStack{
-                    ForEach(users){ user in
-                        LazyVStack (alignment: .leading) {
-                            HStack(spacing: 13){
-                                Text(user.name)
-                                    .frame(width: 120, alignment: .leading)
-                                    .lineSpacing(2)
-                                    .font(.system(size: 12, weight: .light))
-    //                                .offset(x: -30)
-                                
-                                Text(user.mobile ?? "no contact")
-                                    .frame(width: 120, alignment: .leading)
-                                    .lineSpacing(2)
-                                    .font(.system(size: 12, weight: .light))
-    //                                .offset(x: -30)
-                                
-                                Text(user.email ?? "no email")
-                                    .frame(width: 180, alignment: .leading)
-                                    .lineSpacing(2)
-                                    .font(.system(size: 12, weight: .light))
-    //                                .offset(x: -30)
-                                
-                                Text(user.city ?? "no city")
-                                    .frame(width: 120, alignment: .leading)
-                                    .lineSpacing(2)
-                                    .font(.system(size: 12, weight: .light))
-    //                                .offset(x: -30)
-                            }
-                            .offset(x: 10)
-                            .frame(height: 47)
-                            .padding(2)
-                            
-                        }
-                    }
+                   loader
                 }
             }
             .onAppear { fetchApi().getUsers { users in

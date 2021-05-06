@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OrdersTableCard: View {
     
-    @State var orders = [Order]()
+//    @State var orders = [Order]()
     @StateObject var orderStatus = PublishedConstants()
     @State var pickTabOrder = "All Order"
     @State var toggleOnSelectAllListActive = false

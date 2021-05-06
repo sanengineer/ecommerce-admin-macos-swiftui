@@ -28,10 +28,5 @@ class PublishedConstants: ObservableObject {
     @State var products = [Product]()
     
     @Published var pickedTabProduct = "All"
-    
-    
-    
-    
-    
-    
+  
 }

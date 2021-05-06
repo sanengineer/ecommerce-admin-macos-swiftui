@@ -18,7 +18,7 @@ struct HomeStack: View {
             HStack{
                 SidebarNavigation()
             }
-            .frame(width: 1244, height: 700, alignment: .center)
+            .frame(width: 1244, height: 760, alignment: .center)
 //            .environmentObject(customerData)
            
 //        }

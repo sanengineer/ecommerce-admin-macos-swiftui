@@ -33,9 +33,11 @@ struct CardInfoMedium: View {
                     VStack {
                         Spacer()
                         Image(systemName: image).font(.system(size: imageSize, weight: .bold))
+                            .cornerRadius(6)
                             .frame(width:40)
                             .padding(.top, 4)
                             .foregroundColor(colorFore)
+                            
         
                         Spacer()
                     }

@@ -16,7 +16,6 @@ struct ecommerce_admin_macos_swiftuiApp: App {
             VStack {
                 ContentView().environmentObject(settings)
                     .onAppear {
-                       
                         DispatchQueue.main.async {
                             let _ = NSApplication.shared.windows.map { $0.styleMask = [ .titled,.closable,.miniaturizable, .fullSizeContentView]}
                             let _ = NSApplication.shared.windows.map { $0.tabbingMode = .disallowed }

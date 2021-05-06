@@ -9,26 +9,41 @@ import Foundation
 
 class productRestApi {
     func getProducts(completion:@escaping ([Product]) -> ()){
-        
+        let semaphore = DispatchSemaphore (value: 0)
         let url = Environment.productURL.absoluteURL
         
         let request = URLRequest(url: url)
+        let urlSession = URLSession.shared
         
-        URLSession.shared.dataTask(with: request){(data, response, error) in
+        let task = urlSession.dataTask(with: request){(data, response, error) in
             
-            let products = try! JSONDecoder().decode([Product].self, from: data!)
-            
-            print(products)
-            
-            DispatchQueue.main.async {
-                completion(products)
+            guard let data = data else {
+                print(String(describing: error))
+                semaphore.signal()
+                return
             }
             
-            print("DATA: \(data!)")
-            print("RESPONSE: \(response!)")
+            do {
+                let products = try JSONDecoder().decode([Product].self, from: data)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
+                    completion(products)
+                }
+            } catch let err {
+                //debug
+                print("\nERROR_ORDER_NUMBER:", err, "\n")
+            }
+            
+            
+            //debug
+            print("DATA: \(data)")
+            print("RESPONSE: \(String(describing: response))")
             print("ERROR: \(error?.localizedDescription ?? "UNKNOWN ERROR")")
             
-        }.resume()
+            semaphore.signal()
+            
+        }
+        task.resume()
+        semaphore.wait()
     }
     
     func getProductsNumber(completion:@escaping (Int) -> ()){
@@ -54,7 +69,7 @@ class productRestApi {
             
             do {
                 let products_number = try JSONDecoder().decode(Int.self, from: data)
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
                     completion(products_number)
                 }
             } catch let err {

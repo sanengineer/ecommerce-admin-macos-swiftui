@@ -10,12 +10,114 @@ import SDWebImageSwiftUI
 
 struct ProductsTableCard: View {
     
-    @State var products = [Product]()
+    @State var products: [Product]?
     @State var isAnimating: Bool = true
     @State var pickTabProduct = "All"
     @State var productToggleOnStockActive = true
     @State var productSelectEachToggleActive = false
     @State var productSelectAllToggleActive = false
+    
+    var loader: some View {
+        if let unwrappedProducts = products {
+            return AnyView(
+                ForEach(unwrappedProducts){ product in
+                    LazyHStack(alignment: .top, spacing: 30){
+                        Toggle(isOn: $productSelectEachToggleActive){
+                            Text("Select Each")
+                        }
+                        .labelsHidden()
+                        
+                        LazyVStack(alignment: .leading,spacing: 8){
+                            WebImage(url: URL(string: product.image_featured), isAnimating: $isAnimating)
+                                .customLoopCount(1)
+                                .playbackRate(2.0)
+                                .playbackMode(.bounce)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 118, height: 47)
+                                .cornerRadius(7)
+                            
+                            Text(product.name)
+                                .frame(alignment: .leading)
+                                .font(.system(size: 12, weight: .bold))
+                        }
+                        .frame(width:118)
+//                            .background(Color.red)
+                        
+                        Text(product.descriptions)
+                            .frame(width: 118, alignment: .leading)
+                            .font(.system(size: 12, weight: .medium))
+//                                .background(Color.red)
+                        
+                        Text("100")
+                            .frame(width: 62, alignment: .leading)
+                            .font(.system(size: 12, weight: .medium))
+                        
+
+                        Toggle(isOn: $productToggleOnStockActive){
+                            Text("Product Available")
+                        }
+                        .toggleStyle(SwitchToggleStyle())
+                        .labelsHidden()
+                        
+                        Text(String(Int(product.price)))
+                            .frame(width: 100, alignment: .leading)
+                            .font(.system(size: 12, weight: .bold))
+                        
+                    }
+                    .frame(height: 122)
+                }
+            )
+        }
+        else {
+            return AnyView (
+                ForEach(0..<5){ _ in
+                    LazyHStack(alignment: .top, spacing: 30){
+                        Toggle(isOn: $productSelectEachToggleActive){
+                            Text("Select Each")
+                        }
+                        .labelsHidden()
+                        
+                        LazyVStack(alignment: .leading,spacing: 8){
+                            WebImage(url: URL(string: "...."), isAnimating: $isAnimating)
+                                .customLoopCount(1)
+                                .playbackRate(2.0)
+                                .playbackMode(.bounce)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 118, height: 47)
+                                .cornerRadius(7)
+                            
+                            Text("........... ......... ....... ............ .........")
+                                .frame(alignment: .leading)
+                                .font(.system(size: 12, weight: .bold))
+                        }
+                        .frame(width:118)
+                        
+                        Text("....... ........ ......... ......... ............ ............. ..........")
+                            .frame(width: 118, alignment: .leading)
+                            .font(.system(size: 12, weight: .medium))
+                        
+                        Text("....")
+                            .frame(width: 62, alignment: .leading)
+                            .font(.system(size: 12, weight: .medium))
+                        
+
+                        RoundedRectangle(cornerRadius: 12)
+                            .foregroundColor(Color.gray.opacity(0.4))
+                            .frame(width: 40, height: 20)
+                
+                        Text("..........")
+                            .frame(width: 100, alignment: .leading)
+                            .font(.system(size: 12, weight: .bold))
+                        
+                    }
+                    .frame(height: 122)
+                }
+                .redacted(reason: .placeholder)
+            )
+        }
+    }
     
     var body: some View {
         HStack {
@@ -84,58 +186,15 @@ struct ProductsTableCard: View {
                     .foregroundColor(Color.gray.opacity(0.2))
                     .frame(height: 1)
                     .padding(.bottom, 8)
-             
-                    ForEach(products){ product in
-                        LazyHStack(alignment: .top, spacing: 30){
-                            Toggle(isOn: $productSelectEachToggleActive){
-                                Text("Select Each")
-                            }
-                            .labelsHidden()
-                            
-                            LazyVStack(alignment: .leading,spacing: 8){
-                                WebImage(url: URL(string: product.image_featured), isAnimating: $isAnimating)
-                                    .customLoopCount(1)
-                                    .playbackRate(2.0)
-                                    .playbackMode(.bounce)
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 118, height: 47)
-                                    .cornerRadius(7)
-                                
-                                Text(product.name)
-                                    .frame(alignment: .leading)
-                                    .font(.system(size: 12, weight: .bold))
-                            }
-                            .frame(width:118)
-//                            .background(Color.red)
-                            
-                            Text(product.descriptions)
-                                .frame(width: 118, alignment: .leading)
-                                .font(.system(size: 12, weight: .medium))
-//                                .background(Color.red)
-                            
-                            Text("100")
-                                .frame(width: 62, alignment: .leading)
-                                .font(.system(size: 12, weight: .medium))
-                            
-
-                            Toggle(isOn: $productToggleOnStockActive){
-                                Text("Product Available")
-                            }
-                            .toggleStyle(SwitchToggleStyle())
-                            .labelsHidden()
-                            
-                            Text(String(Int(product.price)))
-                                .frame(width: 100, alignment: .leading)
-                                .font(.system(size: 12, weight: .bold))
-                            
-                        }
-                        .frame(height: 122)
-                    }
+                loader
             }
-            .onAppear{ productRestApi().getProducts { (products) in
-                self.products = products
-            }}
+            .onAppear{
+                DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+                    productRestApi().getProducts { (products) in
+                        self.products = products
+                    }
+                }
+            }
         }
         .padding(13)
         .background(Color.gray.opacity(0.1))
@@ -143,3 +202,8 @@ struct ProductsTableCard: View {
     }
 }
 
+struct ContentLoadingView: View {
+    var body: some View {
+        Text("loading...")
+    }
+}

@@ -33,7 +33,7 @@ struct LoginStack: View {
                 VStack(alignment: .center, spacing: 30){
                     HStack(spacing: 20){
                         VStack(spacing:10){
-                            Text("San Coffee")
+                            Text("San")
                                 .font(.system(size: 30, weight: .bold))
                             Text("Admin Dashboard")
                                 .font(.system(size: 11, weight: .semibold))
@@ -110,7 +110,7 @@ struct LoginStack: View {
             
             Spacer()
         }
-        .frame(width: 1244, height: 700, alignment: .center)
+        .frame(width: 600, height: 460, alignment: .center)
     }
 }
 

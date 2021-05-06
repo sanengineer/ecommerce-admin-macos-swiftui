@@ -35,8 +35,7 @@ class orderRestApi {
         
         do {
             let orders = try JSONDecoder().decode([Order].self, from: data)
-            
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
                 completion(orders)
             }
         } catch let err {
@@ -75,7 +74,7 @@ class orderRestApi {
             
             do {
                 let orders_number = try JSONDecoder().decode(Int.self, from: data)
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(wallDeadline: DispatchWallTime.now()+1) {
                     completion(orders_number)
                 }
                 

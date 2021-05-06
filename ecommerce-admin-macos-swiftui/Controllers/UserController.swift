@@ -30,7 +30,7 @@ class fetchApi {
             let users = try JSONDecoder().decode([User].self, from: data)
             print(users)
                         
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
                 completion(users)
             }
         } catch let err {
@@ -60,7 +60,7 @@ class fetchApi {
             
             do {
                 let users_number = try JSONDecoder().decode(Int.self, from: data)
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
                     completion(users_number)
                 }
             } catch let err {

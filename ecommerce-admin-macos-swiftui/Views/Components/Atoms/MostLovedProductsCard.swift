@@ -9,8 +9,42 @@ import SwiftUI
 
 struct MostLovedProductsCard: View {
     
-    @State var products = [Product]()
+    @State var products: [Product]? = nil
     @State var isAnimating: Bool = true
+    
+    var loader: some View {
+        if let unwrappedProducts = products {
+            return AnyView (
+                ForEach(unwrappedProducts) { product in
+                    ListWithImage(
+                        listTitle: product.name ,
+                        listSubTittle: "999",
+//                                listSubTittle: String(product.price),
+                        isAnimating: $isAnimating,
+                        imageUrl: product.image_featured,
+                        offsetListSubtitle: 20
+                    )
+                }
+                
+            )
+        }
+        else {
+            return AnyView (
+                ForEach(0..<5) { _ in
+                    ListWithImage(
+                        listTitle: "..................................." ,
+                        listSubTittle: "....",
+//                                listSubTittle: String(product.price),
+                        isAnimating: $isAnimating,
+                        imageUrl: "....",
+                        offsetListSubtitle: 20
+                    )
+                    .redacted(reason: .placeholder)
+                }
+                
+            )
+        }
+    }
     
     var body: some View {
         
@@ -36,16 +70,7 @@ struct MostLovedProductsCard: View {
                 Spacer()
                 HStack{
                     ScrollView {
-                        ForEach(products) { product in
-                            ListWithImage(
-                                listTitle: product.name ,
-                                listSubTittle: "999",
-//                                listSubTittle: String(product.price),
-                                isAnimating: $isAnimating,
-                                imageUrl: product.image_featured,
-                                offsetListSubtitle: 20
-                            )
-                        }
+                      loader
                         .onAppear{ productRestApi().getProducts{
                             products in
                             self.products = products
