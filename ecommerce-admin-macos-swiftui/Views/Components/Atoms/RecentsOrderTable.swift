@@ -9,110 +9,19 @@ import SwiftUI
 
 struct RecentsOrderTable: View {
     
+//  @EnvirontmentObject var orders: OrderViewModel
     @State var orders: [Order]?
+    @State var selectedOrder: String?
     @State var orderStatus: String = ""
-    
-    var bgColorToShow: Color {
-        switch orderStatus {
-                case "pending":
-                    return .red
-                case "process":
-                    return .green
-                case "done":
-                    return .blue
-                case "canceled":
-                    return .black
-                default:
-                    return .gray
-            }
-        }
     
     var loader: some View {
         if let unwrappedOrders = orders {
             return AnyView (
-                ForEach(unwrappedOrders) { order in
-                    LazyVStack {
-                        HStack(spacing: 13){
-
-                        Text(order.shipping_track_id ?? "no data")
-                            .frame(width: 120, alignment: .leading)
-                            .lineSpacing(2)
-                            .font(.system(size: 12, weight: .regular))
-                            .offset(x: -30)
-
-//                                    Text(order.name?.capitalized ?? "San Engineer")
-                            Text(order.name)
-                                .frame(width: 140, alignment: .leading)
-                                .lineSpacing(2)
-                                .font(.system(size: 12, weight: .regular))
-                                .offset(x: -6)
-
-                            Text(order.shipping_cost ??  "no data")
-                                .frame(width: 90,alignment: .leading)
-                                .lineSpacing(2)
-                                .font(.system(size: 12, weight: .regular))
-                                .offset(x: 30)
-
-                            
-                            switch order.status {
-                            case "process":
-                                Text(order.status)
-                                    .frame(width: 60, height: 18)
-                                    .lineSpacing(2)
-                                    .font(.system(size:11, weight:.medium))
-//                                            .overlay(
-//                                        RoundedRectangle(cornerRadius: 5.0)
-//                                            .stroke(Color.orange, lineWidth: 2))
-                                    .foregroundColor(Color.white)
-                                    .background(Color.orange.opacity(1.0))
-                                    .cornerRadius(4.0)
-                                    .offset(x:-14)
-                            case "done":
-                                Text(order.status)
-                                    .frame(width: 60, height: 18)
-                                    .lineSpacing(2)
-                                    .font(.system(size:11, weight:.medium))
-//                                            .overlay(
-//                                        RoundedRectangle(cornerRadius: 5.0)
-//                                            .stroke(Color.green, lineWidth: 2))
-                                    .foregroundColor(Color.white)
-                                    .background(Color.green.opacity(0.9))
-                                    .cornerRadius(4.0)
-                                    .offset(x:-14)
-                            case "canceled":
-                                Text(order.status)
-                                    .frame(width: 60, height: 18)
-                                    .lineSpacing(2)
-                                    .font(.system(size:11, weight:.medium))
-//                                            .overlay(
-//                                        RoundedRectangle(cornerRadius: 5.0)
-//                                            .stroke(Color.red, lineWidth: 2))
-                                    .foregroundColor(Color.white)
-                                    .background(Color.red.opacity(0.9))
-                                    .cornerRadius(4.0)
-                                    .offset(x:-14)
-                            default:
-                                Text(order.status)
-                                    .frame(width: 60, height: 18)
-                                    .lineSpacing(2)
-                                    .font(.system(size:11, weight:.medium))
-//                                            .overlay(
-//                                        RoundedRectangle(cornerRadius: 5.0)
-//                                            .stroke(Color.yellow, lineWidth: 2))
-                                    .foregroundColor(Color.white)
-                                    .background(Color.gray.opacity(0.8))
-                                    .cornerRadius(4.0)
-                                    .offset(x:-14)
-                            }
-                        
-
-                            Text(order.total ?? "no data").frame(width: 90, alignment: .leading).lineSpacing(2).font(.system(size: 12, weight: .regular))
-
-                    }
-                    .offset(x: 10)
-                    .frame(height:26)
-                    .padding(2)
-                    }
+                
+//                List(selection: $selectedOrder ){
+                    ForEach(unwrappedOrders) { order in
+                            RecentOrderCell(order: order)
+//                    }
                 }
             )
         }
@@ -235,7 +144,7 @@ struct RecentsOrderTable: View {
                 VStack{
                         loader
                             .onAppear{ orderRestApi().getOrders { orders in
-                                        self.orders = orders
+                                self.orders = orders
                                             }
                                     }
                 }
@@ -250,9 +159,88 @@ struct RecentsOrderTable: View {
     }
 }
 
-struct RecentsOrderTable_Previews: PreviewProvider {
-    static var previews: some View {
-        RecentsOrderTable()
-    }
-}
+//struct Cell: View {
+//
+//    @State var shippingTrackId: String
+//    @State var name: String
+//    @State var shippingCost: String
+//    @State var status: Binding
+//    @State var statusName: String
+//    @State var orderTotal: String
+//
+//    var body: some View {
+//
+//        HStack(spacing: 13){
+//
+//        Text(shippingTrackId)
+//            .frame(width: 120, alignment: .leading)
+//            .lineSpacing(2)
+//            .font(.system(size: 12, weight: .regular))
+//            .offset(x: -30)
+//
+//            Text(name)
+//                .frame(width: 140, alignment: .leading)
+//                .lineSpacing(2)
+//                .font(.system(size: 12, weight: .regular))
+//                .offset(x: -6)
+//
+//            Text(shippingCost)
+//                .frame(width: 90,alignment: .leading)
+//                .lineSpacing(2)
+//                .font(.system(size: 12, weight: .regular))
+//                .offset(x: 30)
+//
+//
+//            switch status {
+//            case "process":
+//                Text(statusName)
+//                    .frame(width: 60, height: 18)
+//                    .lineSpacing(2)
+//                    .font(.system(size:11, weight:.medium))
+//                    .foregroundColor(Color.white)
+//                    .background(Color.orange.opacity(1.0))
+//                    .cornerRadius(4.0)
+//                    .offset(x:-14)
+//            case "done":
+//                Text(statusName)
+//                    .frame(width: 60, height: 18)
+//                    .lineSpacing(2)
+//                    .font(.system(size:11, weight:.medium))
+//                    .foregroundColor(Color.white)
+//                    .background(Color.green.opacity(0.9))
+//                    .cornerRadius(4.0)
+//                    .offset(x:-14)
+//            case "canceled":
+//                Text(statusName)
+//                    .frame(width: 60, height: 18)
+//                    .lineSpacing(2)
+//                    .font(.system(size:11, weight:.medium))
+//                    .foregroundColor(Color.white)
+//                    .background(Color.red.opacity(0.9))
+//                    .cornerRadius(4.0)
+//                    .offset(x:-14)
+//            default:
+//                Text(statusName)
+//                    .frame(width: 60, height: 18)
+//                    .lineSpacing(2)
+//                    .font(.system(size:11, weight:.medium))
+//                    .foregroundColor(Color.white)
+//                    .background(Color.gray.opacity(0.8))
+//                    .cornerRadius(4.0)
+//                    .offset(x:-14)
+//            }
+//
+//
+//            Text(orderTotal).frame(width: 90, alignment: .leading).lineSpacing(2).font(.system(size: 12, weight: .regular))
+//
+//        }
+//    }
+//}
+
+//struct RecentsOrderTable_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RecentsOrderTable()
+//    }
+//}
+
 

@@ -9,7 +9,6 @@ import SwiftUI
 struct SidebarNavigation: View {
     
     @StateObject var customerData = PublishedConstants()
-  
 
     var body: some View {
 
@@ -44,8 +43,6 @@ struct SidebarNavigation: View {
                             default : Text("Default Case")
                                 }
                             }
-                            
-                           
                         }
                     }
                     .toolbar {
@@ -57,8 +54,8 @@ struct SidebarNavigation: View {
                 }
 //                .background(Color.orange)
                 
+               
                 DetailsView()
-                
                 
             }
         

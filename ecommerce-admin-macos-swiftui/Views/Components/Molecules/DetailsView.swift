@@ -11,35 +11,21 @@ struct DetailsView: View {
     
     @EnvironmentObject var publishedConstant: PublishedConstants
     
+//    var order: Order
+    
     var body: some View {
         
         HStack {
-//            Spacer()
-//            VStack{
-//                HStack{}
-//                HStack {
-//                    Text("Hello, Detail View")
-//                }
-//
-//                Spacer()
-//
-//                HStack{
-//                    Text("Hello")
-//                }
-//
-               
+//            Text(order.name)
+//            Text(order.status)
+//            Text(order.shipping_cost ?? "no data")
+//            Text("Hello")
             }
 //            .background(Color.blue)
             
-        ExpandedView().frame(width: publishedConstant.rightBarExpanded ? 0 : nil)
+        ExpandedView().frame(width: publishedConstant.rightBarExpanded ? nil : 0)
 //        }
         
-    }
-}
-
-struct DetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeStack()
     }
 }
 
@@ -47,18 +33,22 @@ struct ExpandedView: View {
     var body: some View {
         
         HStack {
- 
             VStack {
-
                 Text("Hello VStack")
-               
                 Spacer()
             }
-            
-           
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .background(Color.primary.opacity(0.1))
         }
     }
 }
+
+
+struct DetailsView_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeStack()
+    }
+}
+
+
 

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct Dashboard: View {
+    
+//    var order: Order
    
     var body: some View {
     
@@ -16,12 +18,10 @@ struct Dashboard: View {
                         VStack(spacing: 13){
                            
                             HStack(spacing: 13) {
-    //                            Spacer()
                                 NewMemberCard()
-                                AllMemberCard(widthFrame: 154)
-                                EmptyStockCard(widthFrame: 154)
-                                SalesCard(widthFrame: 154)
-    //                            Spacer()
+                                AllMemberCard(widthFrame: 156)
+                                EmptyStockCard(widthFrame: 156)
+                                SalesCard(widthFrame: 155)
                             }
                             
                             HStack {
@@ -29,10 +29,8 @@ struct Dashboard: View {
                             }
                                 
                             HStack(spacing: 13) {
-    //                            Spacer()
                                 TopSellingProductsCard()
                                 MostLovedProductsCard()
-    //                            Spacer()
                             }
                           
                             HStack {
@@ -44,8 +42,7 @@ struct Dashboard: View {
                 .padding(.top, 13)
                 .padding(.bottom, 20)
                 .padding(.horizontal, 20)
-//                    .frame(width: 1053, alignment: .center) // width without sidebar left
-                    .frame(width: 685, alignment: .center)
+                .frame(width: 685, alignment: .center)
 
             }
     }

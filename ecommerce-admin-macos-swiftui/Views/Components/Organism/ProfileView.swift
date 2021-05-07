@@ -30,6 +30,8 @@ struct ProfileView: View {
             .sheet(isPresented: $settings.isPresented, content: {
                 ModalView()
             })
+            
+            CustomerStack()
         }
     }
 }
